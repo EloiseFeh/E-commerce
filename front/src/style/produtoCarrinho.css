@@ -1,6 +1,7 @@
 .produtoCarrinho{
+    box-shadow: 5px 5px 8px 0px rgba(50, 50, 50, 0.22);
     margin-top: 10px;
-    background-color: #333333;
+    background-color: #faf6f6;
     padding: 25px;
     color: white;
     margin-bottom: 10px;
@@ -8,9 +9,12 @@
 .Livro{
     display: flex;
 }
+.infoLivro h5{
+    color: #342C61;
+}
 .infoLivro p{
     margin: 0;
-    color: #b3b0b0;
+    color: #363636;
 }
 .imgLivro{
 max-width: 100px;
@@ -24,19 +28,21 @@ margin-right: 15px;
     max-width: 30px;
     padding: 0;
     border: none;
-    color: white;
+    color:  #363636;
 }
 .qtd{
     margin-right: 30px;
 }
 form input{
     max-width: 50px;
-    background-color: #dfdddd;
-    border: none;
+    background-color: #fff8f8;
+    box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.22);
+    border:none;
 }
 input:focus{
     box-shadow: 0 0 0 0 ;
     outline: none;
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.22);
 }
 
 @media(max-width:1200px){

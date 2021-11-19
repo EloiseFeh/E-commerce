@@ -1,10 +1,11 @@
 .resumoCarrinho{
-    background-color:#333333;
-    color: white;
+    background-color:#faf6f6;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    color: #333333;;
     padding: 25px;
 }
 .taxas{
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #333333;
     margin-bottom: 10px;
 }
 .taxa , .subtotal, .total{
@@ -12,10 +13,10 @@
     justify-content: space-between;
 }
 .total{
- margin-bottom: 40px;
+ margin-bottom: 60px;
 }
 .btnFinalCompra{
-    margin-top: 30px;
+    margin-top: 15px;
     border:none;
     background-color: #342C61;
     padding: 10px 50px; 
@@ -28,6 +29,11 @@
     background-color: #2081A1;
 }
 .btnFinalCompra p{
-    color: white;
+    color: #ffffff;
     margin: 0;
+}
+@media(max-width:1200px){
+.btnFinalCompra{
+    width: 45%;
+}
 }

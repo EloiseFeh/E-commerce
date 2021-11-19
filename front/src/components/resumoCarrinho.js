@@ -1,4 +1,5 @@
 import React from "react";
+import BtnFinalCompra from "./btnFinalCompra";
 import "../style/resumoCarrinho.css"
 export default function ResumoCarrinho(){
     return(
@@ -20,7 +21,7 @@ export default function ResumoCarrinho(){
                  <p>$ 50,00</p>
              </div>
         </div>  
-        <button  className="btnFinalCompra"> <p>Finalizar compra</p></button>
+        <BtnFinalCompra link ="/" texto ="Finalizar compra"/>
         </div>
         
     )

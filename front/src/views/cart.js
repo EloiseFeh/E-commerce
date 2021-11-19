@@ -5,12 +5,12 @@ import "../style/cart.css"
 export default function Cart(){
     return(
         <div>
-          <HeaderCarrinho/> 
+          <HeaderCarrinho name="Carrinhos de Produtos"/> 
           <div className="container">
               <div className="row">
                 <div className="col-xl-8">
                 <div class="titulosCarrinho row">
-                  <div className="col-xl-5 p1">
+                  <div className="col-xl-7 p1">
                   <p>Produto</p>
                   </div>
                   <div className="col-xl-2 p2 unidades">
@@ -20,7 +20,6 @@ export default function Cart(){
                   <p className="subt">Subtotal</p>
                   </div>
                 </div>
-                <ProdutoCarrinho/>
                 <ProdutoCarrinho/>
                 </div>
                 <div className="col-xl-4">

@@ -1,10 +1,10 @@
 import React from "react";
 import '../style/produtoCarrinho.css'
-export default function ProdutoCarrinho(){
+export default function ProdutoCarrinho(props){
     return(
         <div>
             <div className="row produtoCarrinho">
-                    <div className="Livro col-xl-5">
+                    <div className="Livro col-xl-7">
                     <img className="imgLivro" src={
                     process.env.PUBLIC_URL + "/assets/images/CapaLivro.jpg"}  
                     />

@@ -1,0 +1,23 @@
+.btnCont button{
+    border:none;
+    background-color: #342C61;
+    padding: 10px ; 
+    border-radius: 8px;
+    color: FFFFFF;
+    transition: 1s;
+    width: 100%;
+     
+}
+.btnCont button:hover{
+ background-color: #2081A1;
+}
+.btnCont button p{
+    padding: 0;
+    margin: 0;
+    color: #FFFFFF;
+}
+@media (max-width:1200px){
+ .btnCont button{
+     width: 45%;
+ }
+}

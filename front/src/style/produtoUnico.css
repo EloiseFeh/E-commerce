@@ -1,0 +1,7 @@
+.ProdutoUnico{
+    display: flex;
+    align-items: center;
+}
+.imgLivroGrande{
+    max-height: 60vh;
+}
