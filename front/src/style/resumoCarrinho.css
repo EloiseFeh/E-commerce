@@ -1,0 +1,33 @@
+.resumoCarrinho{
+    background-color:#333333;
+    color: white;
+    padding: 25px;
+}
+.taxas{
+    border-bottom: 1px solid white;
+    margin-bottom: 10px;
+}
+.taxa , .subtotal, .total{
+    display: flex;
+    justify-content: space-between;
+}
+.total{
+ margin-bottom: 40px;
+}
+.btnFinalCompra{
+    margin-top: 30px;
+    border:none;
+    background-color: #342C61;
+    padding: 10px 50px; 
+    border-radius: 8px;
+    color: FFFFFF;
+    transition: 1s;
+    width: 100%;
+}
+.btnFinalCompra:hover{
+    background-color: #2081A1;
+}
+.btnFinalCompra p{
+    color: white;
+    margin: 0;
+}
