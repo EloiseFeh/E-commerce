@@ -4,7 +4,7 @@ import "../style/resumoCarrinho.css"
 export default function ResumoCarrinho(){
     return(
         <div>
-            <div className="resumoCarrinho">
+            <div className="resumoCarrinho justify-content-center">
          <h5>Resumo</h5>
              <div className="taxas">
                 <div className="subtotal">

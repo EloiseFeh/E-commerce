@@ -11,8 +11,8 @@ return(
         <div className="livroCompra">
             <h3>{props.preço}</h3>
             <form>
-                <label for="qtd">Quatidade</label>
-                <input id="qtd"type="Number"></input>
+                <label for="qtd" >Quantidade:</label>
+                <input id="qtd"type="Number" placeholder='1' min='0'></input>
             </form>
         </div>
         

@@ -7,7 +7,7 @@ export default function Cart(){
         <div>
           <HeaderCarrinho name="Carrinhos de Produtos"/> 
           <div className="container">
-              <div className="row">
+              <div className="row justify-content-center">
                 <div className="col-xl-8">
                 <div class="titulosCarrinho row">
                   <div className="col-xl-7 p1">

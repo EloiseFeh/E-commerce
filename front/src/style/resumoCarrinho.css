@@ -33,6 +33,10 @@
     margin: 0;
 }
 @media(max-width:1200px){
+.resumoCarrinho{
+    width: 97%;
+    margin:0;
+}
 .btnFinalCompra{
     width: 45%;
 }

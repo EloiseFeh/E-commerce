@@ -1,7 +1,15 @@
 .ProdutoUnico{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .imgLivroGrande{
-    max-height: 60vh;
+    max-height: 70vh;
+}
+@media (max-width:1200px) {
+    .imgLivroGrande{
+        display: block;
+        max-width: 70%;
+        margin-bottom: 20px;
+    }
 }
