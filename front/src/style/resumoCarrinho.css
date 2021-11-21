@@ -1,0 +1,43 @@
+.resumoCarrinho{
+    background-color:#faf6f6;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    color: #333333;;
+    padding: 25px;
+}
+.taxas{
+    border-bottom: 1px solid #333333;
+    margin-bottom: 10px;
+}
+.taxa , .subtotal, .total{
+    display: flex;
+    justify-content: space-between;
+}
+.total{
+ margin-bottom: 60px;
+}
+.btnFinalCompra{
+    margin-top: 15px;
+    border:none;
+    background-color: #342C61;
+    padding: 10px 50px; 
+    border-radius: 8px;
+    color: FFFFFF;
+    transition: 1s;
+    width: 100%;
+}
+.btnFinalCompra:hover{
+    background-color: #2081A1;
+}
+.btnFinalCompra p{
+    color: #ffffff;
+    margin: 0;
+}
+@media(max-width:1200px){
+.resumoCarrinho{
+    width: 97%;
+    margin:0;
+}
+.btnFinalCompra{
+    width: 45%;
+}
+}

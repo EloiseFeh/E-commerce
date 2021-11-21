@@ -1,0 +1,14 @@
+.HeaderCarrinho{
+    border-bottom: 1px solid black;
+    vertical-align: center;
+    margin-bottom: 32px;
+}
+
+@media (max-width:1200px) {
+    .HeaderCarrinho{
+        border: none;
+    }
+    .HeaderCarrinho button{
+        width: 70%;
+    }
+}

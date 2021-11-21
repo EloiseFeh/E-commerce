@@ -1,0 +1,22 @@
+
+.sobreLivroGeral{
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 5px 5px 8px 0px rgba(50, 50, 50, 0.22);
+    background-color: #faf6f6;
+}
+.sobreLivro{
+    display: flex;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+}
+.sobreLivro p{
+    margin-right:10px;
+}
+.livroCompra{
+    margin-top:10px;
+}
+.livroCompra form input{
+    margin-left: 20px;
+}
