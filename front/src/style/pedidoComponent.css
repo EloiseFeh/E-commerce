@@ -1,0 +1,25 @@
+.pedido{
+    border-bottom: 1px solid black;
+    padding-bottom: 2%;
+    margin-bottom: 5%;
+}
+.pedidoDataHora{
+    background-color: #ccc;
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 2%;
+    margin-bottom: 1%;
+}
+
+.pedidoInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pedidoProd, .ProdutoID, .ProdutoValor, .ProdutoStatus{
+    max-width: 12%;
+}
