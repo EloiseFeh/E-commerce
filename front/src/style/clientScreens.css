@@ -1,0 +1,82 @@
+.clientDashboard{
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.clientDashboard h1{
+    margin-bottom: 3%;
+}
+.contentDiv{
+    display: flex;
+    justify-content: space-around;
+}
+
+.contentDivEdit{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.cardClienteOpt{
+    text-decoration: none !important;
+    width: 25%;
+}
+
+.cardClienteOpt a{
+    text-decoration: none !important;
+    color: black
+}
+
+.EditOptions{
+    height: 15vh;
+    padding: 0 10% 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    border-bottom: 1px solid black;
+
+}
+
+.ButtonEditar{
+    height: 45px;
+    width: 15%;
+    border: none;
+    border-radius: 10px;
+    background-color: #ccc;
+}
+
+.ButtonDeletaAcc{
+    height: 45px;
+    width: 30%;
+    margin: 0 auto 5%;
+    border: 2px solid #EB5757;
+    border-radius: 10px;
+    background-color: white;
+    color: #EB5757;
+    transition: 0.5s;
+}
+
+.ButtonDeletaAcc:hover{
+    background-color: #EB5757;
+    color: white;
+    transition: 0.5s;
+}
+
+.pedidoInfoTitles{
+    background-color: #ccc;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+input{
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}

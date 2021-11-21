@@ -9,6 +9,10 @@ import App from './App';
 import Cart from './views/cart';
 import ClientDashboard from './views/clientDashboard';
 import ProdutoUnico from './views/produtoUnico';
+import Perfil from './views/perfil';
+import Pedidos from './views/pedidos';
+
+
 ReactDOM.render(
   <Router>
   <Routes>
@@ -16,6 +20,8 @@ ReactDOM.render(
       <Route path='/carrinho' element={<Cart/>}/>
       <Route path='/usuario' element={<ClientDashboard/>}/>
       <Route path='/produto' element={<ProdutoUnico/>}/>
+      <Route path='/perfil' element={<Perfil/>}/>
+      <Route path='/pedidos' element={<Pedidos/>}/>
 
   </Routes>
   <Topbar/>
