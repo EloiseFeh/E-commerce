@@ -80,3 +80,14 @@ input{
     border-radius: 5px;
     border: 1px solid black;
 }
+
+.logout{
+    height: 30px;
+    width: 10%;
+    margin: 0 0 3%;
+    border: 2px solid #EB5757;
+    border-radius: 10px;
+    background-color: white;
+    color: #EB5757;
+    transition: 0.5s;
+}
