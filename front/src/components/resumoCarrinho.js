@@ -13,12 +13,12 @@ export default function ResumoCarrinho(){
                 </div>
                 <div className="taxa">
                     <p>Taxa</p>
-                    <p>R$ 10,00</p>
+                    <p>R$ 20,00</p>
                 </div>
              </div>
              <div className="total">
                  <p>Total</p>
-                 <p>$ 60,00</p>
+                 <p>$ 70,00</p>
              </div>
         </div>  
         <BtnFinalCompra link ="/" texto ="Finalizar compra"/>
