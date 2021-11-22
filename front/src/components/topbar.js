@@ -1,9 +1,12 @@
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Navbar, Nav, NavDropdown, Container} from 'react-bootstrap';
+import ModalLoginCadastro from './modalLogCad';
 
 export default function Topbar(){
+  const [modalShow, setModalShow] = React.useState(false);
   return(
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+    <Navbar collapseOnSelect expand="lg"  variant="dark" fixed="top" className="nav-color">
     <Container>
 
   <Link to="/" className="nav-link">
@@ -41,12 +44,15 @@ export default function Topbar(){
     
     <Link to="/carrinho" className="nav-link">Carrinho</Link>
     
-   
-      <Link to="/login" eventKey={2} className="nav-link">
+      <div className="nav-link" variant="primary" onClick={() => setModalShow(true)}>
         Login
-      </Link>
+      </div>
+
+      <ModalLoginCadastro
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       
-     
     </Nav>
   </Navbar.Collapse>
   </Container>

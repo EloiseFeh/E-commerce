@@ -1,0 +1,50 @@
+.operations-slider{
+    display: flex;
+}
+
+.operations-slider button{
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #342C61;
+    padding: 1rem 0 1rem 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.operations-slider button:hover{
+    background-color: rgba(0, 0, 0,0.02);
+}
+
+.operations-slider-bar{
+    height: 5px;
+    background-color: #342C61;
+    width: 50%;
+    position: relative;
+    left: 0%;
+    -webkit-transition: 1s;
+    transition: 0.5s;
+}
+
+.button-login{
+    left: 0%;
+}
+.button-cadastro{
+    left: 50%;
+}
+
+.modal-submit-button{
+    background-color: #342C61!important;
+    border: none;
+    padding: 10px 20px 10px 20px;
+}
+
+.modal-submit-button:hover{
+    background-color: #2081A1!important;
+    transition: 0.5s all ease;
+}
