@@ -5,7 +5,8 @@ import './style/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Topbar from './components/topbar';
 // Importando páginas
-import App from './App';
+//import App from './App';
+import Home from './views/home';
 import Cart from './views/cart';
 import ClientDashboard from './views/clientDashboard';
 import ProdutoUnico from './views/produtoUnico';
@@ -16,7 +17,7 @@ import Pedidos from './views/pedidos';
 ReactDOM.render(
   <Router>
   <Routes>
-      <Route path='/' exact={true} element={<App/>}/>
+      <Route path='/' exact={true} element={<Home/>}/>
       <Route path='/carrinho' element={<Cart/>}/>
       <Route path='/usuario' element={<ClientDashboard/>}/>
       <Route path='/produto' element={<ProdutoUnico/>}/>
