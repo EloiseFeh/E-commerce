@@ -3,8 +3,10 @@ import '../style/clientScreens.css';
 export default function Perfil(){
     return(
         <div className="clientDashboard">
-        <h1>Perfil</h1>
-
+            <div style={{display:'flex', alignItems: 'center'}}>
+            <h1>Perfil</h1>
+            <button className="logout" style={{marginLeft:'3%'}}>Logout</button>
+            </div>
 
             <div className="contentDivEdit">
 

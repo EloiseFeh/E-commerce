@@ -5,7 +5,7 @@ export default function ProdutoCarrinho(props){
         <div>
             <div className="row produtoCarrinho">
                     <div className="Livro col-xl-7">
-                    <img className="imgLivro" src={
+                    <img className="imgLivro" alt="" src={
                     process.env.PUBLIC_URL + "/assets/images/CapaLivro.jpg"}  
                     />
                     <div className="infoLivro">
