@@ -12,6 +12,13 @@ import ClientDashboard from './views/clientDashboard';
 import ProdutoUnico from './views/produtoUnico';
 import Perfil from './views/perfil';
 import Pedidos from './views/pedidos';
+import AreaAdmin from './views/areaAdmin';
+import GerenciarClientesProdutos from './views/gerenciarClientesProdutos';
+import RelatoriosGerenciais from './views/relatoriosGerenciais';
+import GerenciarClientes from './views/gerenciarClientes';
+import DadosCliente from './views/dadosCliente';
+import GerenciarCategorias from './views/gerenciarCategorias';
+import GerenciarProdutos from './views/gerenciarProdutos';
 
 
 ReactDOM.render(
@@ -23,6 +30,13 @@ ReactDOM.render(
       <Route path='/produto' element={<ProdutoUnico/>}/>
       <Route path='/perfil' element={<Perfil/>}/>
       <Route path='/pedidos' element={<Pedidos/>}/>
+      <Route path='/areaAdmin' element={<AreaAdmin/>}/>
+      <Route path='/gerenciarClientesProdutos' element={<GerenciarClientesProdutos/>}/>
+      <Route path='/relatoriosGerenciais' element={<RelatoriosGerenciais/>}/>
+      <Route path='/gerenciarClientes' element={<GerenciarClientes/>}/>
+      <Route path='/dadosCliente' element={<DadosCliente/>}/>
+      <Route path='/gerenciarCategorias' element={<GerenciarCategorias/>}/>
+      <Route path='/gerenciarProdutos' element={<GerenciarProdutos/>}/>
 
   </Routes>
   <Topbar/>
