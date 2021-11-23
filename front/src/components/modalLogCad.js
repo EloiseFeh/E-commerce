@@ -53,7 +53,7 @@ export default function ModalLoginCadastro (props){
                         </Form.Floating>
                         <Modal.Footer>
                             <Link to="/usuario"><Button className="modal-submit-button" onClick={props.onHide}>Login Cliente</Button></Link>
-                            <Link to="/admin"><Button className="modal-submit-button" onClick={props.onHide}>Login ADM</Button></Link>
+                            <Link to="/areaAdmin"><Button className="modal-submit-button" onClick={props.onHide}>Login ADM</Button></Link>
                         </Modal.Footer>
                         </>
                         : 
