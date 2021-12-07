@@ -5,7 +5,7 @@ export default function BtnContCompra(props){
     return(
         <Link to= {props.link}>
             <div className="btnCont"><button ><p>{props.texto}</p></button></div>
-            
+            <p>oi</p>
          </Link>
     )
 }
