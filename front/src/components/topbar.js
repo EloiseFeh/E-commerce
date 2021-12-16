@@ -43,10 +43,10 @@ export default function Topbar(){
     <Nav>
     
     <Link to="/carrinho" className="nav-link">Carrinho</Link>
-    
-      <div className="nav-link" variant="primary" onClick={() => setModalShow(true)}>
+    <Link to="/login" className="nav-link">Login</Link>
+      {/* <div className="nav-link" variant="primary" onClick={() => setModalShow(true)}>
         Login
-      </div>
+      </div> */}
 
       <ModalLoginCadastro
         show={modalShow}
