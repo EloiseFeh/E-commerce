@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style/login-cadastro.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";

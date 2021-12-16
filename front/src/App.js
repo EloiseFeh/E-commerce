@@ -2,14 +2,14 @@ import "./style/App.css";
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
-  Routes,
   Route,
-  Navigate,
+  Switch,
+  Redirect,
 } from "react-router-dom";
 // import { toast } from "react-toastify";
 import "./style/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Topbar from "./components/topbar";
+import Topbar from "./renders/topbar";
 
 import Home from "./views/home";
 import Cart from "./views/cart";
@@ -36,49 +36,46 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" exact={true} element={<Home />} />
-        <Route path="/carrinho" element={<Cart />} />
-        <Route path="/usuario" element={<ClientDashboard />} />
-        <Route path="/produto" element={<ProdutoUnico />} />
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path="/pedidos" element={<Pedidos />} />
-        <Route path="/areaAdmin" element={<AreaAdmin />} />
+      <Switch>
+        <Route path="/" exact={true} render={Home} />
+        <Route path="/carrinho" render={Cart} />
+        <Route path="/usuario" render={ClientDashboard} />
+        <Route path="/produto" render={ProdutoUnico} />
+        <Route path="/perfil" render={Perfil} />
+        <Route path="/pedidos" render={Pedidos} />
+        <Route path="/areaAdmin" render={AreaAdmin} />
         <Route
           path="/gerenciarClientesProdutos"
-          element={<GerenciarClientesProdutos />}
+          render={GerenciarClientesProdutos}
         />
-        <Route
-          path="/relatoriosGerenciais"
-          element={<RelatoriosGerenciais />}
-        />
-        <Route path="/gerenciarClientes" element={<GerenciarClientes />} />
-        <Route path="/dadosCliente" element={<DadosCliente />} />
-        <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />
-        <Route path="/gerenciarProdutos" element={<GerenciarProdutos />} />
+        <Route path="/relatoriosGerenciais" render={RelatoriosGerenciais} />
+        <Route path="/gerenciarClientes" render={GerenciarClientes} />
+        <Route path="/dadosCliente" render={DadosCliente} />
+        <Route path="/gerenciarCategorias" render={GerenciarCategorias} />
+        <Route path="/gerenciarProdutos" render={GerenciarProdutos} />
 
         <Route
           path="/login"
-          // element={(props) =>
-          //   !isAuthenticated ? (
-          //     <Login {...props} setAuth={setAuth} />
-          //   ) : (
-          //     <Navigate to="/usuario" />
-          //   )
-          // }
-          element={<Login />}
+          render={(props) =>
+            !isAuthenticated ? (
+              <Login {...props} setAuth={setAuth} />
+            ) : (
+              <Redirect to="/usuario" />
+            )
+          }
+          // render={<Login />}
         />
         <Route
           path="/cadastro"
-          element={(props) =>
+          render={(props) =>
             !isAuthenticated ? (
               <Cadastro {...props} setAuth={setAuth} />
             ) : (
-              <Navigate to="/perfil" />
+              <Redirect to="/perfil" />
             )
           }
         />
-      </Routes>
+      </Switch>
       <Topbar />
     </Router>
   );
