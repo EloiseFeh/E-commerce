@@ -19,7 +19,8 @@ import GerenciarClientes from './views/gerenciarClientes';
 import DadosCliente from './views/dadosCliente';
 import GerenciarCategorias from './views/gerenciarCategorias';
 import GerenciarProdutos from './views/gerenciarProdutos';
-
+import Login from './views/login';
+import Cadastro from './views/cadastro'
 
 ReactDOM.render(
   <Router>
@@ -37,6 +38,8 @@ ReactDOM.render(
       <Route path='/dadosCliente' element={<DadosCliente/>}/>
       <Route path='/gerenciarCategorias' element={<GerenciarCategorias/>}/>
       <Route path='/gerenciarProdutos' element={<GerenciarProdutos/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/cadastro' element={<Cadastro/>}/>
 
   </Routes>
   <Topbar/>

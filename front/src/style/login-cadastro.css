@@ -1,0 +1,49 @@
+
+.login{
+ height: 100%;
+}
+.title{
+    margin-top:10px;
+    color: #342C61;
+}
+.form-login{
+   padding: 30px;
+}
+.form-login form{
+    color: blueviolet;
+}
+.input-form{
+    margin-top: 10px;
+}
+.logo-img{
+    width: 100%;
+}
+.button-login{
+    left: 0%;
+}
+.button-cadastro{
+    left: 50%;
+}
+
+.modal-submit-button{
+    background-color: #342C61!important;
+    border: none;
+    padding: 10px 20px 10px 20px;
+}
+
+.modal-submit-button:hover{
+    background-color: #2081A1!important;
+    transition: 0.5s all ease;
+}
+.troca{
+    margin-right: 25px;
+}
+.troca p{
+    padding-right: 2px;
+    
+}
+@media (max-width:1200px) {
+    .logo-img{
+        width: 50%;
+    }
+}
