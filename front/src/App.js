@@ -9,7 +9,7 @@ import {
 // import { toast } from "react-toastify";
 import "./style/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Topbar from "./renders/topbar";
+import Topbar from "./components/topbar";
 
 import Home from "./views/home";
 import Cart from "./views/cart";
