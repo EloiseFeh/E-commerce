@@ -63,7 +63,6 @@ function App() {
               <Redirect to="/usuario" />
             )
           }
-          // render={<Login />}
         />
         <Route
           path="/cadastro"
