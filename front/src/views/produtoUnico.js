@@ -38,7 +38,7 @@ export default function ProdutoUnico() {
 
             <div></div>
           </div>
-          <DescricaoLivro />
+          <DescricaoLivro/>
         </div>
       </div>
     </div>

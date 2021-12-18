@@ -1,8 +1,28 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import CardClientOptions from "../components/cardClientOptions";
 import "../style/clientScreens.css";
 
 export default function ClientDashboard({ setAuth }) {
+
+  // const [name, setName] = useState("");
+  // async function getName(){
+  //   try{
+  //     const response = await fetch( "http://localhost:5000/auth/dashboard/",{
+  //       method:"GET",
+  //       headers:{token: localStorage.token}
+  //     });
+  //     const parseRes = await response.json();
+  //     console.log(parseRes)
+  //   }
+  //   catch(err){
+  //     console.error(err.message)
+  //   }
+  // }
+
+  // useEffect(()=>{
+  //   getName()
+  // })
+
   return (
     <div className="clientDashboard">
       <h1>Sua conta</h1>

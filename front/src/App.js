@@ -70,7 +70,7 @@ function App() {
             !isAuthenticated ? (
               <Cadastro {...props} setAuth={setAuth} />
             ) : (
-              <Redirect to="/perfil" />
+              <Redirect to="/usuario" />
             )
           }
         />

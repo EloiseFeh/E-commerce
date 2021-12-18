@@ -1,5 +1,4 @@
 import React from "react";
-import DescricaoLivro from "./descricaoLivro";
 import '../style/sobreLivro.css'
 export default function SobreLivro(props){
 return(

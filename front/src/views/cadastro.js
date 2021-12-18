@@ -3,25 +3,25 @@ import "../style/login-cadastro.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function Cadastro({setAut}) {
+export default function Cadastro({setAuth}) {
     const [inputs, setInputs] = useState({
       nome: "oi",
       endereco: "",
       email: "pig",
       login:"",
       senha: "",
-      adm:false,
+      administrador:false,
       
     });
     const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-    const { nome, endereco,email,login,senha,adm } = inputs;
+    const { nome, endereco,email,login,senha,administrador } = inputs;
    const onSubmitForm = async(e) =>{
      e.preventDefault();
      try{
-      const body = { nome, endereco,email,login,senha,adm};
+      const body = { nome, endereco,email,login,senha,administrador};
       const response = await fetch(
-          "http://localhost:5000/authentication/register",
+          "http://localhost:5000/auth/register",
           {
             method: "POST",
             headers: {
@@ -30,6 +30,8 @@ export default function Cadastro({setAut}) {
             body: JSON.stringify(body)
           });
           const parseRes = await response.json();
+          localStorage.setItem("token",parseRes.token);
+          setAuth(true);
           console.log(parseRes);
         
      }
@@ -109,29 +111,24 @@ export default function Cadastro({setAut}) {
             />
             <label htmlFor="cadsenha">Senha</label>
           </Form.Floating>
-          <Form.Floating>
-            <Form.Control
-              id="cadadm"
-              name="adm"
-              type="text" //password
-              placeholder="adm"
-              value={adm}
-              onChange = {e => onChange(e)}
-            />
-            <label htmlFor="adm">adm</label>
-          </Form.Floating>
-
-
-
-
-          <button className="modal-submit-button">Cadastrar</button>
+        <label htmlFor="administrador">O usuário é administrador?</label>
+        <select className="select-adm"
+        name="administrador"
+        id="administrador"
+        onChange = {e => onChange(e)}
+        className="form-select form-select-lg mb-3"
+        > 
+          <option value={true}>Sim</option>
+           <option value={false}>Não</option>
+        </select>
+        
+        <button className="modal-submit-button button-cadastro">Cadastrar</button>
           {/* <Modal.Footer>
             <Link to="/usuario">
               <Button className="modal-submit-button">Cadastrar</Button>
             </Link>
           </Modal.Footer> */}
           </form>
-        
           <div className=" troca d-flex troca justify-content-end">
             <p>Já tem conta?</p>
             <Link to="/login">Entrar</Link>
