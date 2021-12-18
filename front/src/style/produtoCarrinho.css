@@ -33,13 +33,13 @@ margin-right: 15px;
 .qtd{
     margin-right: 30px;
 }
-form input{
+.input-qtd{
     max-width: 50px;
     background-color: #fff8f8;
     box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.22);
     border:none;
 }
-input:focus{
+.input-qtd:focus{
     box-shadow: 0 0 0 0 ;
     outline: none;
     box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.22);

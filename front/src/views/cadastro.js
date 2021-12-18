@@ -3,7 +3,7 @@ import "../style/login-cadastro.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function Cadastro({ setAuth }) {
+export default function Cadastro() {
   const [inputs, setInputs] = useState({
     nome: "oi",
     endereco: "",
@@ -28,7 +28,7 @@ export default function Cadastro({ setAuth }) {
       });
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-      setAuth(true);
+      //setAuth(true);
       console.log(parseRes);
     } catch (err) {
       console.error(err.message);
@@ -117,14 +117,9 @@ export default function Cadastro({ setAuth }) {
               <option value={false}>Não</option>
             </select>
 
-            <button className="modal-submit-button button-cadastro">
+            <button className="modal-submit-button btn-submit">
               Cadastrar
             </button>
-            {/* <Modal.Footer>
-            <Link to="/usuario">
-              <Button className="modal-submit-button">Cadastrar</Button>
-            </Link>
-          </Modal.Footer> */}
           </form>
           <div className=" troca d-flex troca justify-content-end">
             <p>Já tem conta?</p>
