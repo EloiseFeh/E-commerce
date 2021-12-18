@@ -1,22 +1,51 @@
-import './style/App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Topbar from "./components/topbar";
+import "./style/App.css";
+import Home from "./views/home";
+import Cart from "./views/cart";
+import ClientDashboard from "./views/clientDashboard";
+import ProdutoUnico from "./views/produtoUnico";
+import Perfil from "./views/perfil";
+import Pedidos from "./views/pedidos";
+import AreaAdmin from "./views/areaAdmin";
+import GerenciarClientesProdutos from "./views/gerenciarClientesProdutos";
+import RelatoriosGerenciais from "./views/relatoriosGerenciais";
+import GerenciarClientes from "./views/gerenciarClientes";
+import DadosCliente from "./views/dadosCliente";
+import GerenciarCategorias from "./views/gerenciarCategorias";
+import GerenciarProdutos from "./views/gerenciarProdutos";
+import Login from "./views/login";
+import Cadastro from "./views/cadastro";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" exact={true} element={<Home />} />
+        <Route path="/carrinho" element={<Cart />} />
+        <Route path="/usuario" element={<ClientDashboard />} />
+        <Route path="/produto" element={<ProdutoUnico />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/pedidos" element={<Pedidos />} />
+        <Route path="/areaAdmin" element={<AreaAdmin />} />
+        <Route
+          path="/gerenciarClientesProdutos"
+          element={<GerenciarClientesProdutos />}
+        />
+        <Route
+          path="/relatoriosGerenciais"
+          element={<RelatoriosGerenciais />}
+        />
+        <Route path="/gerenciarClientes" element={<GerenciarClientes />} />
+        <Route path="/dadosCliente" element={<DadosCliente />} />
+        <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />
+        <Route path="/gerenciarProdutos" element={<GerenciarProdutos />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+      </Routes>
+      <Topbar />
+    </Router>
   );
 }
 
