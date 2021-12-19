@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import "../style/login-cadastro.css";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-export default function Cadastro() {
+
+export default function Cadastro({ setAuth }) {
   const [inputs, setInputs] = useState({
-    nome: "oi",
+    nome: "",
     endereco: "",
-    email: "pig",
+    email: "",
     login: "",
     senha: "",
     administrador: false,
   });
+
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
+
   const { nome, endereco, email, login, senha, administrador } = inputs;
+
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -27,16 +31,9 @@ export default function Cadastro() {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
-      if(parseRes.token){
-        localStorage.setItem("token",parseRes.token);
-        //setAuth(true);
-        toast.success("Cadastrado com sucesso!")
-      }
-      else{
-        //setAuth(false);
-        toast.error("Usuário já existente!")
-      }
+      localStorage.setItem("token", parseRes.token);
       console.log(parseRes);
+      setAuth(true);
     } catch (err) {
       console.error(err.message);
     }
@@ -126,7 +123,7 @@ export default function Cadastro() {
             </select>
 
             <button className="modal-submit-button btn-submit">
-              Cadastrar
+              <Link to="/usuario">Cadastrar</Link>
             </button>
           </form>
           <div className=" troca d-flex troca justify-content-end">
