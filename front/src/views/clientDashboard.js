@@ -17,6 +17,7 @@ export default function ClientDashboard({ setAuth }) {
       });
       const parseRes = await response.json();
       setAdm(parseRes.administrador);
+      console.log("passou ");
       console.log(parseRes);
     } catch (err) {
       console.error(err.message);
@@ -52,7 +53,7 @@ export default function ClientDashboard({ setAuth }) {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
-    toast.success("Deslogado com sucesso!")
+    toast.success("Deslogado com sucesso!");
   };
   // useEffect(() => {
   //   getName();
@@ -62,10 +63,10 @@ export default function ClientDashboard({ setAuth }) {
     <div className="clientDashboard container">
       <div className="row">
         <div className="col-xl-4">
-        <h1>Sua conta</h1>
-        <button className="btn-submit" onClick={(e) => logout(e)}>
-        Logout
-      </button>
+          <h1>Sua conta</h1>
+          <button className="btn-submit" onClick={(e) => logout(e)}>
+            Logout
+          </button>
         </div>
       </div>
       {/* <h1>Olá,{name}</h1> */}

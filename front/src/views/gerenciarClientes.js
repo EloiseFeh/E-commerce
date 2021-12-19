@@ -27,9 +27,9 @@ const GerenciarClientes = () => {
     isAdm();
   });
 
-  if (!adm) {
-    return <Navigate to="/usuario" />;
-  }
+  // if (!adm) {
+  //   return <Navigate to="/usuario" />;
+  // }
 
   return (
     <div>

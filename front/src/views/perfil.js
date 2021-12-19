@@ -1,7 +1,7 @@
 import "../style/clientScreens.css";
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-export default function Perfil() {
+export default function Perfil({ setAuth }) {
   const [adm, setAdm] = useState("");
 
   async function isAdm() {

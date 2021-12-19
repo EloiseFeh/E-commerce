@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "../style/login-cadastro.css";
 import { Form } from "react-bootstrap";
@@ -29,17 +28,18 @@ export default function Login({ setAuth }) {
         },
         body: JSON.stringify(body),
       });
+
       const parseRes = await response.json();
-      if(parseRes.token){
+
+      if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         console.log(parseRes);
-        toast.success("Logado com sucesso!")
+        toast.success("Logado com sucesso!");
         setAuth(true);
-      }else{
-        toast.error("Usuário ou senha incorretos.")
+      } else {
+        toast.error("Usuário ou senha incorretos.");
         setAuth(false);
       }
-      
     } catch (err) {
       console.error(err.message);
     }

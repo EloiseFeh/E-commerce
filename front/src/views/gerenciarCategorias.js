@@ -28,7 +28,7 @@ const GerenciarCategorias = () => {
   });
 
   if (!adm) {
-    return <Navigate to="/usuario" />;
+    return <Navigate to="/login" />;
   }
   return (
     <div>

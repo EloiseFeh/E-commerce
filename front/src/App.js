@@ -24,6 +24,8 @@ import Login from "./views/login";
 import Cadastro from "./views/cadastro";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RedirectPage from "./views/redirectPage";
+
 toast.configure();
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,19 +40,29 @@ function App() {
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/produto" element={<ProdutoUnico />} />
-
-        {/* Areas Cliente */}
-        <Route path="/perfil" element={<Perfil />} />
+        <Route
+          path="/perfil"
+          element={
+            isAuthenticated ? (
+              <Perfil setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route path="/pedidos" element={<Pedidos />} />
-
+        <Route path="/redirect" element={<RedirectPage />} />
         {/* Area adm */}
-        <Route path="/areaAdmin" element={
+        <Route
+          path="/areaAdmin"
+          element={
             isAuthenticated ? (
               <AreaAdmin setAuth={setAuth} />
             ) : (
               <Navigate to="/login" />
             )
-          } />
+          }
+        />
         <Route
           path="/gerenciarClientesProdutos"
           element={<GerenciarClientesProdutos />}
