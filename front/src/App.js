@@ -37,7 +37,6 @@ function App() {
       <Routes>
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
-        <Route path="/usuario" element={<ClientDashboard />} />
         <Route path="/produto" element={<ProdutoUnico />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/pedidos" element={<Pedidos />} />
@@ -74,6 +73,14 @@ function App() {
             )
           }
         />
+        <Route 
+        path="/usuario" element={
+        isAuthenticated ?(
+          <ClientDashboard setAuth={setAuth} />
+          ): (
+            <Navigate to ="/login"/>
+          )
+        } />
       </Routes>
       <Topbar />
     </Router>

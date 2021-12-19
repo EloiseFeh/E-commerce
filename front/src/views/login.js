@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../style/login-cadastro.css";
 import { Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Login({ setAuth }) {
   // let history = useNavigate();
@@ -29,9 +30,16 @@ export default function Login({ setAuth }) {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.token);
-      console.log(parseRes);
-      setAuth(true);
+      if(parseRes.token){
+        localStorage.setItem("token", parseRes.token);
+        console.log(parseRes);
+        toast.success("Logado com sucesso!")
+        setAuth(true);
+      }else{
+        toast.error("Usuário ou senha incorretos.")
+        setAuth(false);
+      }
+      
     } catch (err) {
       console.error(err.message);
     }

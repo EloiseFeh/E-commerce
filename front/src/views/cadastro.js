@@ -31,9 +31,17 @@ export default function Cadastro({ setAuth }) {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
+      if(parseRes.token){
+        toast.success("Cadastrado com sucesso!")
       localStorage.setItem("token", parseRes.token);
       console.log(parseRes);
       setAuth(true);
+      } else{
+        toast.error("Login já existente!")
+        setAuth(false);
+
+      }
+      
     } catch (err) {
       console.error(err.message);
     }
