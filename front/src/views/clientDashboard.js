@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import { getDropdownMenuPlacement } from "react-bootstrap/esm/DropdownMenu";
 import CardClientOptions from "../components/cardClientOptions";
 import "../style/clientScreens.css";
+import "../style/login-cadastro.css";
+import { toast } from "react-toastify";
 
 export default function ClientDashboard({ setAuth }) {
   const [adm, setAdm] = useState("");
@@ -50,18 +52,23 @@ export default function ClientDashboard({ setAuth }) {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
+    toast.success("Deslogado com sucesso!")
   };
   // useEffect(() => {
   //   getName();
   // });
 
   return (
-    <div className="clientDashboard">
-      {/* <h1>Olá,{name}</h1> */}
-      <h4>Sua conta</h4>
-      <button className="btn btn-primary" onClick={(e) => logout(e)}>
+    <div className="clientDashboard container">
+      <div className="row">
+        <div className="col-xl-4">
+        <h1>Sua conta</h1>
+        <button className="btn-submit" onClick={(e) => logout(e)}>
         Logout
       </button>
+        </div>
+      </div>
+      {/* <h1>Olá,{name}</h1> */}
       <div className="contentDiv">
         <CardClientOptions
           link="/pedidos"

@@ -44,7 +44,13 @@ function App() {
         <Route path="/pedidos" element={<Pedidos />} />
 
         {/* Area adm */}
-        <Route path="/areaAdmin" element={<AreaAdmin />} />
+        <Route path="/areaAdmin" element={
+            isAuthenticated ? (
+              <AreaAdmin setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          } />
         <Route
           path="/gerenciarClientesProdutos"
           element={<GerenciarClientesProdutos />}
