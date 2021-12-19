@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import '../style/login-cadastro.css';
 import { Modal, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Login(){
     const [inputs, setInputs] = useState({
         login:"",
@@ -24,8 +25,18 @@ export default function Login(){
                  body: JSON.stringify(body)
                });
                const parseRes = await response.json();
+               // teste para exibição de mensagem sobre login + carregamento de página
+              if(parseRes.token){
                 localStorage.setItem("token",parseRes.token);
                 //setAuth(true);
+                toast.success("Logado com sucesso!")
+              }else{
+                //setAuth(false);
+                toast.error("Usuário ou senha incorretos.")
+              }
+
+
+                
                console.log(parseRes);
              
           }

@@ -12,7 +12,7 @@ return(
             <h3>{props.preço}</h3>
             <form>
                 <label for="qtd" >Quantidade:</label>
-                <input id="qtd"type="Number" placeholder='1' min='0'></input>
+                <input className="input-qtd" id="qtd"type="Number" placeholder='1' min='0'></input>
             </form>
         </div>
         

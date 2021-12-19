@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../style/login-cadastro.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
 export default function Cadastro() {
   const [inputs, setInputs] = useState({
     nome: "oi",
@@ -27,8 +27,15 @@ export default function Cadastro() {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.token);
-      //setAuth(true);
+      if(parseRes.token){
+        localStorage.setItem("token",parseRes.token);
+        //setAuth(true);
+        toast.success("Cadastrado com sucesso!")
+      }
+      else{
+        //setAuth(false);
+        toast.error("Usuário já existente!")
+      }
       console.log(parseRes);
     } catch (err) {
       console.error(err.message);
@@ -113,8 +120,9 @@ export default function Cadastro() {
               onChange={(e) => onChange(e)}
               className="form-select form-select-lg mb-3"
             >
-              <option value={true}>Sim</option>
               <option value={false}>Não</option>
+              <option value={true}>Sim</option>
+             
             </select>
 
             <button className="modal-submit-button btn-submit">
