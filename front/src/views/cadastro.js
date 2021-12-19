@@ -31,7 +31,6 @@ export default function Cadastro({ setAuth }) {
       });
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-
       console.log(parseRes);
       setAuth(true);
     } catch (err) {
@@ -122,7 +121,7 @@ export default function Cadastro({ setAuth }) {
             </select>
 
             <button className="modal-submit-button btn-submit">
-              <Link to="/usuario">Cadastrar</Link>
+              Cadastrar
             </button>
           </form>
           <div className=" troca d-flex troca justify-content-end">

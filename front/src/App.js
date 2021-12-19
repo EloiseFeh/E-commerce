@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Topbar from "./components/topbar";
 import "./style/App.css";
 import Home from "./views/home";
@@ -30,10 +35,7 @@ function App() {
       <Routes>
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
-        <Route
-          path="/usuario"
-          element={<ClientDashboard setAuth={setAuth} />}
-        />
+        <Route path="/usuario" element={<ClientDashboard />} />
         <Route path="/produto" element={<ProdutoUnico />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/pedidos" element={<Pedidos />} />
@@ -50,8 +52,26 @@ function App() {
         <Route path="/dadosCliente" element={<DadosCliente />} />
         <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />
         <Route path="/gerenciarProdutos" element={<GerenciarProdutos />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
+        <Route
+          path="/login"
+          element={
+            !isAuthenticated ? (
+              <Login setAuth={setAuth} />
+            ) : (
+              <Navigate to="/usuario" />
+            )
+          }
+        />
+        <Route
+          path="/cadastro"
+          element={
+            !isAuthenticated ? (
+              <Cadastro setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
       </Routes>
       <Topbar />
     </Router>

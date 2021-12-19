@@ -29,8 +29,8 @@ export default function Login({ setAuth }) {
       });
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-      setAuth(true);
       console.log(parseRes);
+      setAuth(true);
     } catch (err) {
       console.error(err.message);
     }
@@ -72,9 +72,7 @@ export default function Login({ setAuth }) {
               />
               <label htmlFor="senha">Senha</label>
             </Form.Floating>
-            <button className="modal-submit-button btn-submit">
-              <Link to="/usuario">Entrar</Link>
-            </button>
+            <button className="modal-submit-button btn-submit">Entrar</button>
           </form>
           <div className=" troca d-flex troca justify-content-end">
             <p>Não tem conta?</p>

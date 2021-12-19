@@ -1,12 +1,11 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
 import CardClientOptions from "../components/cardClientOptions";
 import "../style/clientScreens.css";
 
-export default function ClientDashboard({ setAuth }) {
-  if (!setAuth) {
-    return <Navigate to="/login" />;
-  }
+export default function ClientDashboard() {
+  // if (!setAuth) {
+  //   return <Navigate to="/login" />;
+  // }
 
   return (
     <div className="clientDashboard">
