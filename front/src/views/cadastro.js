@@ -34,7 +34,7 @@ export default function Cadastro({ setAuth }) {
       if(parseRes.token){
         toast.success("Cadastrado com sucesso!")
       localStorage.setItem("token", parseRes.token);
-      console.log(parseRes);
+      //console.log(parseRes);
       setAuth(true);
       } else{
         toast.error("Login já existente!")
@@ -68,6 +68,7 @@ export default function Cadastro({ setAuth }) {
                 placeholder="nome"
                 value={nome}
                 onChange={(e) => onChange(e)}
+                required
               />
               <label htmlFor="cadnome">Seu nome completo</label>
             </Form.Floating>
@@ -79,6 +80,7 @@ export default function Cadastro({ setAuth }) {
                 placeholder="endereco"
                 value={endereco}
                 onChange={(e) => onChange(e)}
+                required
               />
               <label htmlFor="cadendereco">Seu endereço</label>
             </Form.Floating>
@@ -91,6 +93,7 @@ export default function Cadastro({ setAuth }) {
                 placeholder="nome@exemplo.com"
                 value={email}
                 onChange={(e) => onChange(e)}
+                required
               />
               <label htmlFor="cademail">E-mail</label>
             </Form.Floating>
@@ -103,6 +106,7 @@ export default function Cadastro({ setAuth }) {
                 placeholder="user123"
                 value={login}
                 onChange={(e) => onChange(e)}
+                required
               />
               <label htmlFor="cademail">Login</label>
             </Form.Floating>
@@ -114,6 +118,7 @@ export default function Cadastro({ setAuth }) {
                 placeholder="Senha"
                 value={senha}
                 onChange={(e) => onChange(e)}
+                required
               />
               <label htmlFor="cadsenha">Senha</label>
             </Form.Floating>
