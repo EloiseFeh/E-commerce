@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Topbar from "./components/topbar";
 import "./style/App.css";
@@ -19,12 +19,21 @@ import Login from "./views/login";
 import Cadastro from "./views/cadastro";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
+
   return (
     <Router>
       <Routes>
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
-        <Route path="/usuario" element={<ClientDashboard />} />
+        <Route
+          path="/usuario"
+          element={<ClientDashboard setAuth={setAuth} />}
+        />
         <Route path="/produto" element={<ProdutoUnico />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/pedidos" element={<Pedidos />} />
