@@ -1,43 +1,67 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { getDropdownMenuPlacement } from "react-bootstrap/esm/DropdownMenu";
 import CardClientOptions from "../components/cardClientOptions";
 import "../style/clientScreens.css";
 
-export default function ClientDashboard({setAuth}) {
-  // if (!setAuth) {
-  //   return <Navigate to="/login" />;
-  // }
-  const [name, setName]= useState("");
-  async function getName(){
-    try{
-      const response = await fetch("http://localhost:5000/dashboard/",{
-        method:"GET",
-        headers: {token: localStorage.token}
+export default function ClientDashboard({ setAuth }) {
+  const [adm, setAdm] = useState("");
 
-    });
-    const parseRes = await response.json();
-    setName(parseRes.nome)
-    console.log(parseRes);
-    }
-    catch(err){
+  async function isAdm() {
+    try {
+      const response = await fetch("http://localhost:5000/dashboard/", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+      setAdm(parseRes.administrador);
+      console.log(parseRes);
+    } catch (err) {
       console.error(err.message);
     }
   }
-  const logout =(e)=>{
+
+  useEffect(() => {
+    isAdm();
+  });
+
+  if (adm) {
+    return <Navigate to="/areaAdmin" />;
+  }
+
+  // if (!setAuth) {
+  //   return <Navigate to="/login" />;
+  // }
+  // const [name, setName] = useState("");
+  // async function getName() {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/dashboard/", {
+  //       method: "GET",
+  //       headers: { token: localStorage.token },
+  //     });
+  //     const parseRes = await response.json();
+  //     setName(parseRes.nome);
+  //     console.log(parseRes);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // }
+  const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
-  }
-  useEffect(()=>{
-    getName();
-  })
-
+  };
+  // useEffect(() => {
+  //   getName();
+  // });
 
   return (
     <div className="clientDashboard">
-      <h1>Olá,{name}</h1>
+      {/* <h1>Olá,{name}</h1> */}
       <h4>Sua conta</h4>
-      <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
+      <button className="btn btn-primary" onClick={(e) => logout(e)}>
+        Logout
+      </button>
       <div className="contentDiv">
         <CardClientOptions
           link="/pedidos"

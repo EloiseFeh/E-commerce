@@ -22,8 +22,8 @@ import GerenciarCategorias from "./views/gerenciarCategorias";
 import GerenciarProdutos from "./views/gerenciarProdutos";
 import Login from "./views/login";
 import Cadastro from "./views/cadastro";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,8 +38,12 @@ function App() {
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/produto" element={<ProdutoUnico />} />
+
+        {/* Areas Cliente */}
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/pedidos" element={<Pedidos />} />
+
+        {/* Area adm */}
         <Route path="/areaAdmin" element={<AreaAdmin />} />
         <Route
           path="/gerenciarClientesProdutos"
@@ -73,14 +77,16 @@ function App() {
             )
           }
         />
-        <Route 
-        path="/usuario" element={
-        isAuthenticated ?(
-          <ClientDashboard setAuth={setAuth} />
-          ): (
-            <Navigate to ="/login"/>
-          )
-        } />
+        <Route
+          path="/usuario"
+          element={
+            isAuthenticated ? (
+              <ClientDashboard setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
       </Routes>
       <Topbar />
     </Router>
