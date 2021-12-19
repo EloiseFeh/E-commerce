@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style/login-cadastro.css";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Cadastro({ setAuth }) {
   const [inputs, setInputs] = useState({
@@ -116,8 +117,9 @@ export default function Cadastro({ setAuth }) {
               onChange={(e) => onChange(e)}
               className="form-select form-select-lg mb-3"
             >
-              <option value={true}>Sim</option>
               <option value={false}>Não</option>
+              <option value={true}>Sim</option>
+             
             </select>
 
             <button className="modal-submit-button btn-submit">

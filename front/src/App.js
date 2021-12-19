@@ -22,7 +22,9 @@ import GerenciarCategorias from "./views/gerenciarCategorias";
 import GerenciarProdutos from "./views/gerenciarProdutos";
 import Login from "./views/login";
 import Cadastro from "./views/cadastro";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
