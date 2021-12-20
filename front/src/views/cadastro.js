@@ -12,7 +12,15 @@ export default function Cadastro({ setAuth }) {
     login: "",
     senha: "",
     administrador: false,
+    // nomeError: "",
+    // enderecoError: "",
+    // emailError: "",
+    // loginError: "",
+    // senhaError: "",
   });
+
+  // const { nomeError, enderecoError, emailError, loginError, senhaError } =
+  //   errorsForm;
 
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -21,29 +29,40 @@ export default function Cadastro({ setAuth }) {
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    try {
-      const body = { nome, endereco, email, login, senha, administrador };
-      const response = await fetch("http://localhost:5000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      const parseRes = await response.json();
-      if(parseRes.token){
-        toast.success("Cadastrado com sucesso!")
-      localStorage.setItem("token", parseRes.token);
-      console.log(parseRes);
-      setAuth(true);
-      } else{
-        toast.error("Login já existente!")
-        setAuth(false);
 
+    if (inputs.nome == "" || inputs.nome.match(/^\s*$/)) {
+      toast.error("Nome Precisa ser preenchido");
+    } else if (inputs.endereco == "" || inputs.endereco.match(/^\s*$/)) {
+      toast.error("Endereço Precisa ser preenchido");
+    } else if (inputs.email == "" || inputs.email.match(/^\s*$/)) {
+      toast.error("Email Precisa ser preenchido");
+    } else if (inputs.login == "" || inputs.login.match(/^\s*$/)) {
+      toast.error("Login Precisa ser preenchido");
+    } else if (inputs.senha == "" || inputs.senha.match(/^\s*$/)) {
+      toast.error("Senha Precisa ser preenchido");
+    } else {
+      try {
+        const body = { nome, endereco, email, login, senha, administrador };
+        const response = await fetch("http://localhost:5000/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(body),
+        });
+        const parseRes = await response.json();
+        if (parseRes.token) {
+          toast.success("Cadastrado com sucesso!");
+          localStorage.setItem("token", parseRes.token);
+          console.log(parseRes);
+          setAuth(true);
+        } else {
+          toast.error("Login já existente!");
+          setAuth(false);
+        }
+      } catch (err) {
+        console.error(err.message);
       }
-      
-    } catch (err) {
-      console.error(err.message);
     }
   };
 
@@ -127,7 +146,6 @@ export default function Cadastro({ setAuth }) {
             >
               <option value={false}>Não</option>
               <option value={true}>Sim</option>
-             
             </select>
 
             <button className="modal-submit-button btn-submit">
