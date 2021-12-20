@@ -33,7 +33,7 @@ export default function Login({ setAuth }) {
 
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
-        console.log(parseRes);
+        //console.log(parseRes);
         toast.success("Logado com sucesso!");
         setAuth(true);
       } else {

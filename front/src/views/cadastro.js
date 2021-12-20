@@ -12,15 +12,7 @@ export default function Cadastro({ setAuth }) {
     login: "",
     senha: "",
     administrador: false,
-    // nomeError: "",
-    // enderecoError: "",
-    // emailError: "",
-    // loginError: "",
-    // senhaError: "",
   });
-
-  // const { nomeError, enderecoError, emailError, loginError, senhaError } =
-  //   errorsForm;
 
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -54,7 +46,7 @@ export default function Cadastro({ setAuth }) {
         if (parseRes.token) {
           toast.success("Cadastrado com sucesso!");
           localStorage.setItem("token", parseRes.token);
-          console.log(parseRes);
+          //console.log(parseRes);
           setAuth(true);
         } else {
           toast.error("Login já existente!");
