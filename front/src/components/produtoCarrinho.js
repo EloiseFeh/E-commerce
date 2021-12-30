@@ -17,7 +17,7 @@ export default function ProdutoCarrinho(props){
                     </div>
                     <div className="col-xl-2 infosCompra qtd">
                         <form>
-                            <input type="number" min="0"  placeholder="1"></input>
+                            <input className="input-qtd" type="number" min="0"  placeholder="1"></input>
                         </form>
                     </div>
                     <div className="col-xl-1 infosCompra">

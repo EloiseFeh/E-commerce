@@ -6,15 +6,6 @@
     margin-top:10px;
     color: #342C61;
 }
-.form-login{
-   padding: 30px;
-}
-.form-login form{
-    color: blueviolet;
-}
-.input-form{
-    margin-top: 10px;
-}
 .logo-img{
     width: 100%;
 }
@@ -24,14 +15,16 @@
 .button-cadastro{
     left: 50%;
 }
-
-.modal-submit-button{
+.btn-submit{
+    color: white;
+    border-radius: 3px;
     background-color: #342C61!important;
     border: none;
     padding: 10px 20px 10px 20px;
+    margin-bottom: 10px;
 }
 
-.modal-submit-button:hover{
+.btn-submit:hover{
     background-color: #2081A1!important;
     transition: 0.5s all ease;
 }

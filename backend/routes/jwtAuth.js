@@ -16,7 +16,7 @@ router.post("/register", async(req,res) => {
         const user = await pool.query("SELECT * from usuario where login = $1",
         [login]);
         if(user.rows.length!==0){
-            return res.status(401).send("Usuário já existe!");
+            return res.status(401).json("Usuário já existe!");
         }
 
         //bcrypt a senha (deixa pra lá!!)
