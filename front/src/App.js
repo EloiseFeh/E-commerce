@@ -1,16 +1,12 @@
-import "./style/App.css";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   BrowserRouter as Router,
+  Routes,
   Route,
-  Switch,
-  Redirect,
+  Navigate,
 } from "react-router-dom";
-// import { toast } from "react-toastify";
-import "./style/index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Topbar from "./components/topbar";
-
+import "./style/App.css";
 import Home from "./views/home";
 import Cart from "./views/cart";
 import ClientDashboard from "./views/clientDashboard";
@@ -26,7 +22,11 @@ import GerenciarCategorias from "./views/gerenciarCategorias";
 import GerenciarProdutos from "./views/gerenciarProdutos";
 import Login from "./views/login";
 import Cadastro from "./views/cadastro";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import RedirectPage from "./views/redirectPage";
 
+toast.configure();
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -34,47 +34,99 @@ function App() {
     setIsAuthenticated(boolean);
   };
 
+  async function isAuth(){
+    try{
+      const response = await fetch("http://localhost:5000/auth/is-verify", {
+        method: "GET",
+        headers: {token: localStorage.token}
+      });
+
+      const parseRes = await response.json()
+      //console.log("PARSE RES AQ",parseRes)
+      parseRes ===true ? setIsAuthenticated(true):
+      setIsAuthenticated(false);
+
+    }
+    catch(err){
+      console.error(err.message);
+    }
+  }
+  useEffect(()=>
+  isAuth()
+  )
+
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact={true} render={Home} />
-        <Route path="/carrinho" render={Cart} />
-        <Route path="/usuario" render={ClientDashboard} />
-        <Route path="/produto" render={ProdutoUnico} />
-        <Route path="/perfil" render={Perfil} />
-        <Route path="/pedidos" render={Pedidos} />
-        <Route path="/areaAdmin" render={AreaAdmin} />
+      <Routes>
+        <Route path="/" exact={true} element={<Home />} />
+        <Route path="/carrinho" element={<Cart />} />
+        <Route path="/produto" element={<ProdutoUnico />} />
+        <Route
+          path="/perfil"
+          element={
+            isAuthenticated ? (
+              <Perfil setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route path="/pedidos" element={<Pedidos />} />
+        <Route path="/redirect" element={<RedirectPage />} />
+        {/* Area adm */}
+        <Route
+          path="/areaAdmin"
+          element={
+            isAuthenticated ? (
+              <AreaAdmin setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route
           path="/gerenciarClientesProdutos"
-          render={GerenciarClientesProdutos}
+          element={<GerenciarClientesProdutos />}
         />
-        <Route path="/relatoriosGerenciais" render={RelatoriosGerenciais} />
-        <Route path="/gerenciarClientes" render={GerenciarClientes} />
-        <Route path="/dadosCliente" render={DadosCliente} />
-        <Route path="/gerenciarCategorias" render={GerenciarCategorias} />
-        <Route path="/gerenciarProdutos" render={GerenciarProdutos} />
-
+        <Route
+          path="/relatoriosGerenciais"
+          element={<RelatoriosGerenciais />}
+        />
+        <Route path="/gerenciarClientes" element={<GerenciarClientes />} />
+        <Route path="/dadosCliente" element={<DadosCliente />} />
+        <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />
+        <Route path="/gerenciarProdutos" element={<GerenciarProdutos />} />
         <Route
           path="/login"
-          render={(props) =>
+          element={
             !isAuthenticated ? (
-              <Login {...props} setAuth={setAuth} />
+              <Login setAuth={setAuth} />
             ) : (
-              <Redirect to="/usuario" />
+              <Navigate to="/usuario" />
             )
           }
         />
         <Route
           path="/cadastro"
-          render={(props) =>
+          element={
             !isAuthenticated ? (
-              <Cadastro {...props} setAuth={setAuth} />
+              <Cadastro setAuth={setAuth} />
             ) : (
-              <Redirect to="/usuario" />
+              <Navigate to="/login" />
             )
           }
         />
-      </Switch>
+        <Route
+          path="/usuario"
+          element={
+            isAuthenticated ? (
+              <ClientDashboard setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+      </Routes>
       <Topbar />
     </Router>
   );
