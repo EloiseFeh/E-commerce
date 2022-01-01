@@ -8,10 +8,10 @@ import { toast } from "react-toastify";
 
 export default function ClientDashboard({ setAuth }) {
   const [adm, setAdm] = useState("");
-
+  const [name, setName] = useState("");
   async function isAdm() {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
+      const response = await fetch("http://localhost:5000/dashboard/:id", {
         method: "GET",
         headers: { token: localStorage.token },
       });
@@ -28,36 +28,37 @@ export default function ClientDashboard({ setAuth }) {
     isAdm();
   });
 
+  useEffect(() => {
+    getName();
+  });
+
   if (adm) {
     return <Navigate to="/areaAdmin" />;
   }
 
-  // if (!setAuth) {
-  //   return <Navigate to="/login" />;
-  // }
-  // const [name, setName] = useState("");
-  // async function getName() {
-  //   try {
-  //     const response = await fetch("http://localhost:5000/dashboard/", {
-  //       method: "GET",
-  //       headers: { token: localStorage.token },
-  //     });
-  //     const parseRes = await response.json();
-  //     setName(parseRes.nome);
-  //     console.log(parseRes);
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // }
+  if (!setAuth) {
+    return <Navigate to="/login" />;
+  }
+
+  async function getName() {
+    try {
+      const response = await fetch("http://localhost:5000/dashboard/:id", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+      setName(parseRes.nome);
+      console.log(parseRes);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
     toast.success("Deslogado com sucesso!");
   };
-  // useEffect(() => {
-  //   getName();
-  // });
 
   return (
     <div className="clientDashboard container">
@@ -69,7 +70,7 @@ export default function ClientDashboard({ setAuth }) {
           </button>
         </div>
       </div>
-      {/* <h1>Olá,{name}</h1> */}
+      <h1>Olá,{name}</h1>
       <div className="contentDiv">
         <CardClientOptions
           link="/pedidos"
