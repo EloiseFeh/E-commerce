@@ -64,13 +64,13 @@ export default function ClientDashboard({ setAuth }) {
     <div className="clientDashboard container">
       <div className="row">
         <div className="col-xl-4">
-          <h1>Sua conta</h1>
+          <h1>Olá,{name}</h1>
           <button className="btn-submit" onClick={(e) => logout(e)}>
             Logout
           </button>
         </div>
       </div>
-      <h1>Olá,{name}</h1>
+
       <div className="contentDiv">
         <CardClientOptions
           link="/pedidos"

@@ -27,9 +27,6 @@ const GerenciarCategorias = () => {
     isAdm();
   });
 
-  if (!adm) {
-    return <Navigate to="/login" />;
-  }
   return (
     <div>
       <Topbar />
