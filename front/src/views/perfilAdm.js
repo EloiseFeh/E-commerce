@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function Perfil({ setAuth }) {
+export default function PerfilAdm({ setAuth }) {
   const [dados, setDados] = useState("");
   const [inputs, setInputs] = useState({
     nome: "",
@@ -26,7 +26,7 @@ export default function Perfil({ setAuth }) {
         headers: { token: localStorage.token },
       });
       const parseRes = await response.json();
-      setDados(parseRes.nome);
+      setDados(parseRes);
       console.log(parseRes);
     } catch (err) {
       console.error(err.message);

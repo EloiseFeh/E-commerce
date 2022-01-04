@@ -20,6 +20,9 @@ import GerenciarClientes from "./views/gerenciarClientes";
 import DadosCliente from "./views/dadosCliente";
 import GerenciarCategorias from "./views/gerenciarCategorias";
 import GerenciarProdutos from "./views/gerenciarProdutos";
+import EditarProduto from "./views/editarProduto";
+import InserirProduto from "./views/inserirProduto";
+import PerfilAdm from "./views/perfilAdm";
 import Login from "./views/login";
 import Cadastro from "./views/cadastro";
 import { toast } from "react-toastify";
@@ -96,6 +99,9 @@ function App() {
         <Route path="/dadosCliente" element={<DadosCliente />} />
         <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />
         <Route path="/gerenciarProdutos" element={<GerenciarProdutos />} />
+        <Route path="/editarProduto" element={<EditarProduto/>} />
+        <Route path="/inserirProduto" element={<InserirProduto/>} />
+        <Route path="/perfilAdm" element={<PerfilAdm/>} />
         <Route
           path="/login"
           element={

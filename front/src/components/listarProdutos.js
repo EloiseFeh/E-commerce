@@ -21,6 +21,9 @@ const ListarProdutos = () => {
           <Button variant="secondary" size="sm">
             Editar
           </Button>
+          <Button variant="danger" size="sm">
+            Excluir
+          </Button>
         </td>
       </tr>
     );

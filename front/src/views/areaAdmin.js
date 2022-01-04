@@ -50,16 +50,22 @@ const AreaAdmin = ({ setAuth }) => {
             </Col>
           </Row>
           <Row>
-            <Col sm={6}>
+            <Col sm={4}>
               <BtnSecaoAdm
                 link="/relatoriosGerenciais"
                 text="Relatorios Gerenciais"
               />
             </Col>
-            <Col sm={6}>
+            <Col sm={4}>
               <BtnSecaoAdm
                 link="/gerenciarClientesProdutos"
                 text="Gerenciar Cliente/Produto"
+              />
+            </Col>
+            <Col sm={4}>
+              <BtnSecaoAdm
+                link="/perfilAdm"
+                text="Perfil"
               />
             </Col>
           </Row>
