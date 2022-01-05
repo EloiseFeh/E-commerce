@@ -4,28 +4,29 @@ import { Navigate } from "react-router-dom";
 import Topbar from "../components/topbar";
 
 import { Container, Stack, Row, Button, Col } from "react-bootstrap";
-import ListarProdutos from "../components/listarProdutos";
+import CadastrarProdutos from "../components/produto/cadastrarProduto";
+import ListarProdutos from "../components/produto/listarProdutos";
 
 const GerenciarProdutos = () => {
-  const [adm, setAdm] = useState("");
+  // const [adm, setAdm] = useState("");
 
-  async function isAdm() {
-    try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
-        method: "GET",
-        headers: { token: localStorage.token },
-      });
-      const parseRes = await response.json();
-      setAdm(parseRes.administrador);
-      console.log(parseRes);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
+  // async function isAdm() {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/dashboard/", {
+  //       method: "GET",
+  //       headers: { token: localStorage.token },
+  //     });
+  //     const parseRes = await response.json();
+  //     setAdm(parseRes.administrador);
+  //     console.log(parseRes);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // }
 
-  useEffect(() => {
-    isAdm();
-  });
+  // useEffect(() => {
+  //   isAdm();
+  // });
 
   // if (!adm) {
   //   return <Navigate to="/usuario" />;
@@ -41,12 +42,7 @@ const GerenciarProdutos = () => {
           </Stack>
           <Stack gap={3}>
             <Row>
-              <Col>
-                <h4>Produtos Cadastradas</h4>
-              </Col>
-              <Col>
-                <Button variant="primary">Cadastrar novo Produto</Button>
-              </Col>
+              <CadastrarProdutos />
             </Row>
             <ListarProdutos />
           </Stack>

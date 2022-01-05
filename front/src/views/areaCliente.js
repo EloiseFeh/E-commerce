@@ -6,7 +6,7 @@ import "../style/clientScreens.css";
 import "../style/login-cadastro.css";
 import { toast } from "react-toastify";
 
-export default function ClientDashboard({ setAuth }) {
+export default function AreaCliente({ setAuth }) {
   const [adm, setAdm] = useState("");
   const [name, setName] = useState("");
   async function isAdm() {
