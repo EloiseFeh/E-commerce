@@ -31,7 +31,7 @@ export default function CadastrarProdutos() {
         body: JSON.stringify(body),
       });
       console.log(response);
-      //   window.location = "/gerenciarProdutos";
+       window.location = "/gerenciarProdutos";
     } catch (err) {
       console.error(err.message);
     }

@@ -31,6 +31,21 @@ const ListarProdutos = () => {
 
   const [livros, setLivros] = useState([]);
 
+  // função apagar livro 
+  const ApagarLivro = async (id) =>{
+    try {
+      const response = await fetch(`http://localhost:5000/admProdutos/excluir/${id}`,{
+        method:"DELETE"
+      });
+      // função para apagar visualmente o livro
+      setLivros(livros.filter(livro => livro.id !==id));
+      console.log(response);
+      
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
   const getLivros = async () => {
     try {
       const response = await fetch(
@@ -63,7 +78,7 @@ const ListarProdutos = () => {
       </thead>
       <tbody>
         {livros.map((livro, index) => (
-          <tr key={index}>
+          <tr key={livro.id}>
             <td>{livro.id}</td>
             <td>{livro.descricao}</td>
             <td>{livro.preco}</td>
@@ -72,7 +87,7 @@ const ListarProdutos = () => {
               <Button variant="secondary" size="sm">
                 Editar
               </Button>
-              <Button variant="danger" size="sm">
+              <Button  onClick={()=> ApagarLivro(livro.id)} variant="danger" size="sm">
                 Excluir
               </Button>
             </td>
