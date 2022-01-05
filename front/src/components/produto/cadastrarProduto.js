@@ -6,15 +6,13 @@ import { toast } from "react-toastify";
 export default function CadastrarProdutos() {
   const [inputs, setInputs] = useState({
     descricao: "",
-    preco: "",
+    preco: 10,
     foto: "foto aqui",
     quantidade: "",
     autor: "",
     editora: "",
     ano: "",
   });
-
-  console.log("passou aqui");
 
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -59,7 +57,7 @@ export default function CadastrarProdutos() {
           <Form.Control
             id="preco"
             name="preco"
-            type="text"
+            type="number"
             placeholder="preco"
             value={preco}
             onChange={(e) => onChange(e)}
@@ -83,7 +81,7 @@ export default function CadastrarProdutos() {
           <Form.Control
             id="quantidade"
             name="quantidade"
-            type="text"
+            type="number"
             placeholder="Exemplo: 21"
             value={quantidade}
             onChange={(e) => onChange(e)}
@@ -119,7 +117,7 @@ export default function CadastrarProdutos() {
           <Form.Control
             id="ano"
             name="ano"
-            type="text"
+            type="number"
             placeholder="Ano de Lançamento"
             value={ano}
             onChange={(e) => onChange(e)}
