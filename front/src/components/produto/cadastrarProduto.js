@@ -27,7 +27,7 @@ export default function CadastrarProdutos() {
     try {
       const body = { descricao, preco, foto, quantidade, autor, editora, ano };
       console.log(body);
-      const response = await fetch("http://localhost:5000/novo", {
+      const response = await fetch("http://localhost:5000/admProdutos/novo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -59,7 +59,7 @@ export default function CadastrarProdutos() {
           <Form.Control
             id="preco"
             name="preco"
-            type="text"
+            type="number"
             placeholder="preco"
             value={preco}
             onChange={(e) => onChange(e)}
@@ -83,7 +83,7 @@ export default function CadastrarProdutos() {
           <Form.Control
             id="quantidade"
             name="quantidade"
-            type="text"
+            type="number"
             placeholder="Exemplo: 21"
             value={quantidade}
             onChange={(e) => onChange(e)}
@@ -119,7 +119,7 @@ export default function CadastrarProdutos() {
           <Form.Control
             id="ano"
             name="ano"
-            type="text"
+            type="number"
             placeholder="Ano de Lançamento"
             value={ano}
             onChange={(e) => onChange(e)}
