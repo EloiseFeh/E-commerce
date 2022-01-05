@@ -6,15 +6,13 @@ import { toast } from "react-toastify";
 export default function CadastrarProdutos() {
   const [inputs, setInputs] = useState({
     descricao: "",
-    preco: "",
+    preco: 10,
     foto: "foto aqui",
     quantidade: "",
     autor: "",
     editora: "",
     ano: "",
   });
-
-  console.log("passou aqui");
 
   const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
