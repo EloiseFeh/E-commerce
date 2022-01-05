@@ -41,9 +41,7 @@ const GerenciarProdutos = () => {
             <h1>Gerenciar Produtos</h1>
           </Stack>
           <Stack gap={3}>
-            <Row>
-              <CadastrarProdutos />
-            </Row>
+            <Row>{/* <CadastrarProdutos /> */}</Row>
             <ListarProdutos />
           </Stack>
         </Stack>
