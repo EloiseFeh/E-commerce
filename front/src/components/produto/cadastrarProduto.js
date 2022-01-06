@@ -31,7 +31,7 @@ export default function CadastrarProdutos() {
         body: JSON.stringify(body),
       });
       console.log(response);
-       window.location = "/gerenciarProdutos";
+      window.location = "/gerenciarProdutos";
     } catch (err) {
       console.error(err.message);
     }
@@ -74,7 +74,7 @@ export default function CadastrarProdutos() {
             value={foto}
             onChange={(e) => onChange(e)}
           />
-          <label htmlFor="foto">Link para uma capa</label>
+          <label htmlFor="foto">Capa</label>
         </Form.Floating>
 
         <Form.Floating className="mb-3 mt-3">
