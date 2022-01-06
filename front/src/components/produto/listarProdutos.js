@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import EditarProduto from "./editarProduto";
-
+import "../../style/AdmProduto.css"
 const ListarProdutos = () => {
   const [livros, setLivros] = useState([]);
 
@@ -61,13 +61,12 @@ const ListarProdutos = () => {
             <td>{livro.quantidade}</td>
             <td>
               <EditarProduto livro={livro} />
-              <Button
+              <button
+              className="btn btn-danger btn-admProduto"
                 onClick={() => ApagarLivro(livro.id)}
-                variant="danger"
-                size="sm"
               >
                 Excluir
-              </Button>
+              </button>
             </td>
           </tr>
         ))}

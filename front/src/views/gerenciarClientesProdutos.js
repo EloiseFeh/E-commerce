@@ -40,7 +40,7 @@ const GerenciarClientesProdutos = () => {
             <Col>
               <BtnSecaoAdm
                 link="/gerenciarClientes"
-                text="Gerenciar Cliente e Compras"
+                text="Gerenciar Compras"
               />
             </Col>
             <Col>

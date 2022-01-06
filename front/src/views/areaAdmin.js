@@ -59,7 +59,7 @@ const AreaAdmin = ({ setAuth }) => {
             <Col sm={4}>
               <BtnSecaoAdm
                 link="/gerenciarClientesProdutos"
-                text="Gerenciar Cliente/Produto"
+                text="Compras, categorias e produtos"
               />
             </Col>
             <Col sm={4}>
