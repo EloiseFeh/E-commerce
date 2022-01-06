@@ -21,12 +21,12 @@ export default function PerfilAdm({ setAuth }) {
 
   async function getDados() {
     try {
-      const response = await fetch("http://localhost:5000/perfil/:id", {
+      const response = await fetch("http://localhost:5000/perfil", {
         method: "GET",
         headers: { token: localStorage.token },
       });
       const parseRes = await response.json();
-      setDados(parseRes);
+      setDados(parseRes[0]);
       console.log(parseRes);
     } catch (err) {
       console.error(err.message);
