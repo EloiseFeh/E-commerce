@@ -103,14 +103,15 @@ const EditarProduto = ({ livro }) => {
 
   return (
     <div>
-      <button
+     <button
         type="button"
-        class="btn btn-warning"
+        class="btn btn-warning btn-admProduto"
         data-toggle="modal"
         data-target={`#id${livro.id}`}
       >
         Editar
       </button>
+
 
       <div
         class="modal"

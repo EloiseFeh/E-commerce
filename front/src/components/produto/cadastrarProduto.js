@@ -39,10 +39,12 @@ export default function CadastrarProdutos() {
 
   return (
     <div>
-      <h2>Cadastrar novo Produto</h2>
+      <h2>Cadastrar novo produto</h2>
 
       <form onSubmit={onSubmitForm}>
-        <Form.Floating className="mb-3 mt-3">
+        <div className="row g2">
+          <div className="col-xl">
+          <Form.Floating className="mt-3">
           <Form.Control
             id="descricao"
             name="descricao"
@@ -53,7 +55,13 @@ export default function CadastrarProdutos() {
           />
           <label htmlFor="descricao">Descrição</label>
         </Form.Floating>
-        <Form.Floating className="mb-3 mt-3">
+          </div>
+        </div>
+
+
+        <div className="row g2">
+          <div className="col-xl-2">
+          <Form.Floating className="mt-3">
           <Form.Control
             id="preco"
             name="preco"
@@ -64,8 +72,9 @@ export default function CadastrarProdutos() {
           />
           <label htmlFor="preco">Preço do Livro</label>
         </Form.Floating>
-
-        <Form.Floating className="mb-3 mt-3">
+          </div>
+          <div className="col-xl-6">
+          <Form.Floating className="mt-3">
           <Form.Control
             id="foto"
             name="foto"
@@ -76,8 +85,9 @@ export default function CadastrarProdutos() {
           />
           <label htmlFor="foto">Capa</label>
         </Form.Floating>
-
-        <Form.Floating className="mb-3 mt-3">
+          </div>
+          <div className="col-xl-4">
+          <Form.Floating className="mt-3">
           <Form.Control
             id="quantidade"
             name="quantidade"
@@ -88,32 +98,12 @@ export default function CadastrarProdutos() {
           />
           <label htmlFor="quantidade">Quantidade em Estoque</label>
         </Form.Floating>
+          </div>
+        </div>
 
-        <Form.Floating>
-          <Form.Control
-            id="autor"
-            name="autor"
-            type="text"
-            placeholder="Autor"
-            value={autor}
-            onChange={(e) => onChange(e)}
-          />
-          <label htmlFor="autor">Autor</label>
-        </Form.Floating>
-
-        <Form.Floating>
-          <Form.Control
-            id="editora"
-            name="editora"
-            type="text"
-            placeholder="Editora"
-            value={editora}
-            onChange={(e) => onChange(e)}
-          />
-          <label htmlFor="editora">Editora</label>
-        </Form.Floating>
-
-        <Form.Floating>
+        <div className="row g2">
+        <div className="col-xl-2">
+          <Form.Floating className="mt-3">
           <Form.Control
             id="ano"
             name="ano"
@@ -125,6 +115,46 @@ export default function CadastrarProdutos() {
           <label htmlFor="ano">Ano</label>
         </Form.Floating>
 
+          </div>
+          <div className="col-xl-6">
+          <Form.Floating className=" mt-3">
+          <Form.Control
+            id="autor"
+            name="autor"
+            type="text"
+            placeholder="Autor"
+            value={autor}
+            onChange={(e) => onChange(e)}
+          />
+          <label htmlFor="autor">Autor</label>
+        </Form.Floating>
+          </div>
+          <div className="col-xl-4">
+          <Form.Floating className="mb-3 mt-3">
+          <Form.Control
+            id="editora"
+            name="editora"
+            type="text"
+            placeholder="Editora"
+            value={editora}
+            onChange={(e) => onChange(e)}
+          />
+          <label htmlFor="editora">Editora</label>
+        </Form.Floating>
+          </div>
+          
+        </div>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
         <button className="modal-submit-button btn-submit">Cadastrar</button>
       </form>
     </div>

@@ -10,7 +10,9 @@ export default function Topbar(){
     <Container>
 
   <Link to="/" className="nav-link">
-    <Navbar.Brand>Logo aqui</Navbar.Brand>
+    <Navbar.Brand>
+    <img className="imgLivroGrande" alt="" src={process.env.PUBLIC_URL + "/assets/images/logo.png"} />
+    </Navbar.Brand>
   </Link>
   
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
