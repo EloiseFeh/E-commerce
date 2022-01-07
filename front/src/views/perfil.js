@@ -6,37 +6,16 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Perfil({ setAuth }) {
-  const [dados, setDados] = useState("");
-  const [inputs, setInputs] = useState({
-    nome: "",
-    endereco: "",
-    email: "",
-    senha: "",
-  });
+  const [nome, setnome] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const onChange = (e) =>
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
 
-  const { nome, endereco, email, senha } = inputs;
 
-  async function getDados() {
-    try {
-      const response = await fetch("http://localhost:5000/perfil", {
-        method: "GET",
-        headers: { token: localStorage.token },
-      });
-      const parseRes = await response.json();
-      setDados(parseRes[0]);
-      console.log(parseRes);
-    } catch (err) {
-      console.error(err.message);
-    }
+  async function getUsuario (){
+      
   }
-
-  useEffect(() => {
-    getDados();
-  });
-
   // Função para ATUALIZAR dados do cliente
 
   // const onSubmitForm = async (e) => {
@@ -78,8 +57,8 @@ export default function Perfil({ setAuth }) {
             name="nome"
             type="text"
             placeholder="nome"
-            value={nome}
-            onChange={(e) => onChange(e)}
+            // value={nome}
+            // onChange={(e) => onChange(e)}
           />
           <label htmlFor="cadnome">{nome}</label>
         </Form.Floating>
@@ -89,8 +68,8 @@ export default function Perfil({ setAuth }) {
             name="endereco"
             type="text"
             placeholder="endereco"
-            value={endereco}
-            onChange={(e) => onChange(e)}
+            // value={endereco}
+            // onChange={(e) => onChange(e)}
           />
           <label htmlFor="cadendereco">Seu endereço</label>
         </Form.Floating>
@@ -101,8 +80,8 @@ export default function Perfil({ setAuth }) {
             name="email"
             type="email"
             placeholder="nome@exemplo.com"
-            value={email}
-            onChange={(e) => onChange(e)}
+            // value={email}
+            // onChange={(e) => onChange(e)}
           />
           <label htmlFor="cademail">E-mail</label>
         </Form.Floating>
@@ -113,8 +92,8 @@ export default function Perfil({ setAuth }) {
             name="senha"
             type="password" //password
             placeholder="Senha"
-            value={senha}
-            onChange={(e) => onChange(e)}
+            // value={senha}
+            // onChange={(e) => onChange(e)}
           />
           <label htmlFor="cadsenha">Senha</label>
         </Form.Floating>
