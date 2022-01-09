@@ -33,7 +33,6 @@ export default function Perfil({ setAuth }) {
   useEffect(() => {
     getUser();
   }, []);
-
   console.log(user);
   console.log(nome);
   // Função para ATUALIZAR dados do cliente
@@ -95,6 +94,32 @@ export default function Perfil({ setAuth }) {
     }
   };
 
+  // função de apagar conta
+
+  const ApagarConta = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/perfil/excluir/",
+        {
+          method: "DELETE",
+          headers: { token: localStorage.token },
+        }
+      );
+     
+      window.location= "/login";
+      localStorage.removeItem("token");
+      setAuth(false);
+      toast.success("Conta deletada com sucesso!");
+     // setLivros(livros.filter((livro) => livro.id !== id));
+      console.log(response);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+
+
+
   return (
     <div className="clientDashboard">
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -152,7 +177,7 @@ export default function Perfil({ setAuth }) {
         <button className="modal-submit-button btn-submit">Atualizar</button>
       </form>
 
-      <button className="ButtonDeletaAcc">Deletar Conta</button>
+      <button className="ButtonDeletaAcc"  onClick={() => ApagarConta()}>Deletar Conta</button>
     </div>
   );
 }
