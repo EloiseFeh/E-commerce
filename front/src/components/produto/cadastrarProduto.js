@@ -144,17 +144,7 @@ export default function CadastrarProdutos() {
           </div>
           
         </div>
-        
 
-        
-
-        
-
-        
-
-        
-
-        
         <button className="modal-submit-button btn-submit">Cadastrar</button>
       </form>
     </div>

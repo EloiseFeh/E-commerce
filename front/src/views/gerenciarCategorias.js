@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-
 import Topbar from "../components/topbar";
-
 import { Container, Stack, Row, Button, Col } from "react-bootstrap";
-import ListarCategorias from "../components/listarCategorias";
-
+import CadastrarCategorias from "../components/categoria/cadastrarCategoria";
+import ListarCategorias from "../components/categoria/listarCategorias";
 const GerenciarCategorias = () => {
   const [adm, setAdm] = useState("");
 
@@ -36,7 +34,9 @@ const GerenciarCategorias = () => {
             <h1>Gerenciar Categorias</h1>
           </Stack>
           <Stack gap={3}>
-            <Row>
+            <CadastrarCategorias/>
+            <ListarCategorias/>
+            {/* <Row>
               <Col>
                 <h4>Categorias Cadastradas</h4>
               </Col>
@@ -44,7 +44,7 @@ const GerenciarCategorias = () => {
                 <Button variant="primary">Cadastrar nova Categoria</Button>
               </Col>
             </Row>
-            <ListarCategorias />
+            <ListarCategorias /> */}
           </Stack>
         </Stack>
       </Container>
