@@ -59,7 +59,7 @@ function App() {
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/produto" element={<ProdutoUnico />} />
-        <Route
+        {/* <Route
           path="/perfil"
           element={
             isAuthenticated ? (
@@ -68,7 +68,8 @@ function App() {
               <Navigate to="/login" />
             )
           }
-        />
+        /> */}
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/redirect" element={<RedirectPage />} />
         {/* Area adm */}

@@ -64,7 +64,7 @@ const AreaAdmin = ({ setAuth }) => {
             </Col>
             <Col sm={4}>
               <BtnSecaoAdm
-                link="/perfilAdm"
+                link="/perfil"
                 text="Perfil"
               />
             </Col>

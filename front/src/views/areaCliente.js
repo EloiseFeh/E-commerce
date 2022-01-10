@@ -17,8 +17,6 @@ export default function AreaCliente({ setAuth }) {
       });
       const parseRes = await response.json();
       setAdm(parseRes.administrador);
-      console.log("passou ");
-      console.log(parseRes);
     } catch (err) {
       console.error(err.message);
     }
@@ -48,7 +46,6 @@ export default function AreaCliente({ setAuth }) {
       });
       const parseRes = await response.json();
       setName(parseRes.nome);
-      console.log(parseRes);
     } catch (err) {
       console.error(err.message);
     }

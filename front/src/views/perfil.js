@@ -6,64 +6,119 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Perfil({ setAuth }) {
-  const [dados, setDados] = useState("");
-  const [inputs, setInputs] = useState({
-    nome: "",
-    endereco: "",
-    email: "",
-    senha: "",
-  });
+  const [user, setUser] = useState([]);
+  const [nome, setNome] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const onChange = (e) =>
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-
-  const { nome, endereco, email, senha } = inputs;
-
-  async function getDados() {
+  const getUser = async () => {
     try {
-      const response = await fetch("http://localhost:5000/perfil", {
+      const response = await fetch("http://localhost:5000/perfil/", {
         method: "GET",
         headers: { token: localStorage.token },
       });
-      const parseRes = await response.json();
-      setDados(parseRes[0]);
-      console.log(parseRes);
+      const jsonData = await response.json();
+
+      setUser(jsonData);
+      setNome(jsonData.nome);
+      setEndereco(jsonData.endereco);
+      setEmail(jsonData.email);
+      setSenha(jsonData.senha);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+  console.log(user);
+  console.log(nome);
+  // Função para ATUALIZAR dados do cliente
+
+  const UpdateUser = async (e) => {
+    e.preventDefault();
+    try {
+      const bodyNome = { nome };
+      const bodyEndereco = { endereco };
+      const bodyEmail = { email };
+      const bodySenha = { senha };
+
+      // Atualizando Nome
+      const responseNome = await fetch(`http://localhost:5000/perfil/nome`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+        },
+        body: JSON.stringify(bodyNome),
+      });
+
+      // Atualizando Endereco
+      const responseEndereco = await fetch(
+        `http://localhost:5000/perfil/endereco`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.token,
+          },
+          body: JSON.stringify(bodyEndereco),
+        }
+      );
+
+      // Atualizando Email
+      const responseEmail = await fetch(`http://localhost:5000/perfil/email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+        },
+        body: JSON.stringify(bodyEmail),
+      });
+
+      // Atualizando Senha
+      const responseSenha = await fetch(`http://localhost:5000/perfil/senha`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+        },
+        body: JSON.stringify(bodySenha),
+      });
+
+      window.location = "/perfil";
     } catch (err) {
       console.error(err.message);
     }
-  }
+  };
 
-  useEffect(() => {
-    getDados();
-  });
+  // função de apagar conta
 
-  // Função para ATUALIZAR dados do cliente
+  const ApagarConta = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/perfil/excluir/",
+        {
+          method: "DELETE",
+          headers: { token: localStorage.token },
+        }
+      );
+     
+      window.location= "/login";
+      localStorage.removeItem("token");
+      setAuth(false);
+      toast.success("Conta deletada com sucesso!");
+     // setLivros(livros.filter((livro) => livro.id !== id));
+      console.log(response);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
-  // const onSubmitForm = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const body = { nome, endereco, email, senha };
-  //     const response = await fetch("http://localhost:5000/auth/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //       },
-  //       body: JSON.stringify(body),
-  //     });
-  //     const parseRes = await response.json();
-  //     if (parseRes.token) {
-  //       toast.success("Cadastrado com sucesso!");
-  //       localStorage.setItem("token", parseRes.token);
-  //       //console.log(parseRes);
-  //       setAuth(true);
-  //     } else {
-  //       toast.error("Login já existente!");
-  //       setAuth(false);
-  //     }
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // };
+
+
 
   return (
     <div className="clientDashboard">
@@ -71,7 +126,7 @@ export default function Perfil({ setAuth }) {
         <h1>Perfil</h1>
       </div>
 
-      <form>
+      <form onSubmit={UpdateUser}>
         <Form.Floating className="mb-3 mt-3">
           <Form.Control
             id="cadnome"
@@ -79,9 +134,9 @@ export default function Perfil({ setAuth }) {
             type="text"
             placeholder="nome"
             value={nome}
-            onChange={(e) => onChange(e)}
+            onChange={(e) => setNome(e.target.value)}
           />
-          <label htmlFor="cadnome">{nome}</label>
+          <label htmlFor="cadnome">Nome</label>
         </Form.Floating>
         <Form.Floating className="mb-3 mt-3">
           <Form.Control
@@ -90,7 +145,7 @@ export default function Perfil({ setAuth }) {
             type="text"
             placeholder="endereco"
             value={endereco}
-            onChange={(e) => onChange(e)}
+            onChange={(e) => setEndereco(e.target.value)}
           />
           <label htmlFor="cadendereco">Seu endereço</label>
         </Form.Floating>
@@ -102,7 +157,7 @@ export default function Perfil({ setAuth }) {
             type="email"
             placeholder="nome@exemplo.com"
             value={email}
-            onChange={(e) => onChange(e)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <label htmlFor="cademail">E-mail</label>
         </Form.Floating>
@@ -111,10 +166,10 @@ export default function Perfil({ setAuth }) {
           <Form.Control
             id="cadsenha"
             name="senha"
-            type="password" //password
+            type="text" //password
             placeholder="Senha"
             value={senha}
-            onChange={(e) => onChange(e)}
+            onChange={(e) => setSenha(e.target.value)}
           />
           <label htmlFor="cadsenha">Senha</label>
         </Form.Floating>
@@ -122,7 +177,7 @@ export default function Perfil({ setAuth }) {
         <button className="modal-submit-button btn-submit">Atualizar</button>
       </form>
 
-      <button className="ButtonDeletaAcc">Deletar Conta</button>
+      <button className="ButtonDeletaAcc"  onClick={() => ApagarConta()}>Deletar Conta</button>
     </div>
   );
 }
