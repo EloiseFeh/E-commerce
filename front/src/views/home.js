@@ -11,7 +11,7 @@ export default function Home() {
 
   const getLivros = async () => {
     try {
-      const response = await fetch("http://localhost:5000/produtosVisual/");
+      const response = await fetch("http://localhost:5000/produtos/");
       const jsonData = await response.json();
 
       setLivros(jsonData);
