@@ -36,12 +36,6 @@ export default function Home() {
                     <h2>Destaques</h2>
                 </div>
                 <SliderLivros sliderlivros={livros}/>
-            </Container>
-            <Container className="mt-5">
-                <div>
-                    <h2>Novidade</h2>
-                </div>
-                <SliderLivros sliderlivros={livros}/>
             </Container> */}
       <Livros livros={livros} />
     </>
