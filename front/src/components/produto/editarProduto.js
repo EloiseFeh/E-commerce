@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
 const EditarProduto = ({ livro }) => {
-  console.log(livro);
+  // console.log(livro);
 
   const [descricao, setDescricao] = useState(livro.descricao);
   const [preco, setPreco] = useState(livro.preco);
@@ -103,28 +103,27 @@ const EditarProduto = ({ livro }) => {
 
   return (
     <div>
-     <button
+      <button
         type="button"
-        class="btn btn-warning btn-admProduto"
+        className="btn btn-warning btn-admProduto"
         data-toggle="modal"
         data-target={`#id${livro.id}`}
       >
         Editar
       </button>
 
-
       <div
-        class="modal"
+        className="modal"
         id={`id${livro.id}`}
         onClick={() => setDescricao(livro.descricao)}
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Editar Livro</h4>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Editar Livro</h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 onClick={() => setDescricao(livro.descricao)}
               >
@@ -132,7 +131,7 @@ const EditarProduto = ({ livro }) => {
               </button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <Form.Floating className="mb-3 mt-3">
                 <Form.Control
                   id="descricao"
@@ -218,10 +217,10 @@ const EditarProduto = ({ livro }) => {
               </Form.Floating>
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-dismiss="modal"
                 onClick={(e) => updateProduto(e)}
               >
@@ -229,7 +228,7 @@ const EditarProduto = ({ livro }) => {
               </button>
               <button
                 type="button"
-                class="btn btn-danger"
+                className="btn btn-danger"
                 data-dismiss="modal"
                 onClick={() => setDescricao(livro.descricao)}
               >
