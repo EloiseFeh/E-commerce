@@ -1,6 +1,31 @@
 const router = require("express").Router();
 const pool = require("../database");
 const authorization = require("../middleware/authorization");
+const multer = require('multer');
+
+//onde armazenar o upload e com que nome
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null,'./uploads');
+    },
+    filename: function(req,file,cb){
+        cb(null,file.originalname);
+    }
+})
+
+//filtro para aceitar só jpg e png
+const filtro = (req,file,cb) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null,true);
+    } else {
+        cb(null,false);
+    }
+};
+
+const upload = multer({
+    storage:storage,
+    fileFilter:filtro
+});
 
 //consulta de todos os livros cadastrados
 router.get("/consulta", async (req, res) => {
@@ -22,10 +47,13 @@ router.get("/consulta", async (req, res) => {
 
 
 //inserção de um novo livro
-router.post("/novo", async(req,res) => {
+router.post("/novo",upload.single('productImage'), async(req,res) => {
     try {
         //desestruturar req body
         const {descricao,preco,foto,quantidade,autor,editora,ano} = req.body;
+
+        const {path} = req.file;
+        realPath = __dirname + path;
         
         //verificar se já existe
         const produtoExiste = await pool.query("SELECT * from livro where descricao = $1",
@@ -37,7 +65,7 @@ router.post("/novo", async(req,res) => {
         //entrar o novo produto no banco
         const novoProduto = await pool.query(
             "INSERT into livro (descricao,preco,foto,quantidade,autor,editora,ano) values ($1,$2,$3,$4,$5,$6,$7) RETURNING *",
-            [descricao,preco,foto,quantidade,autor,editora,ano]
+            [descricao,preco,path,quantidade,autor,editora,ano]
         );
         res.json("Livro Inserido");
 
