@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function CadastrarProdutos() {
+  const formCadProduto = useRef();
+
   const [inputs, setInputs] = useState({
     descricao: "",
     preco: "",
@@ -20,17 +22,18 @@ export default function CadastrarProdutos() {
   const { descricao, preco, foto, quantidade, autor, editora, ano } = inputs;
 
   const onSubmitForm = async (e) => {
-    console.log("entrou no submit");
     e.preventDefault();
     try {
-      const body = { descricao, preco, foto, quantidade, autor, editora, ano };
-      console.log(body);
+      const dadosForm = new FormData(formCadProduto.current);
+
+      // const body = { descricao, preco, foto, quantidade, autor, editora, ano };
+      console.log(dadosForm);
       const response = await fetch("http://localhost:5000/admProdutos/novo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(dadosForm),
       });
-      // console.log(response);
+      console.log(response);
       // window.location = "/gerenciarProdutos";
     } catch (err) {
       console.error(err.message);
@@ -42,10 +45,11 @@ export default function CadastrarProdutos() {
       <h2>Cadastrar novo produto</h2>
 
       <form
-        onSubmit={onSubmitForm}
-        method="POST"
-        action="admProdutos/novo"
+        id="formCadProduto"
+        name="formCadProduto"
         encType="multipart/form-data"
+        onSubmit={onSubmitForm}
+        ref={formCadProduto}
       >
         <div className="row g2">
           <div className="col-xl">
@@ -81,11 +85,11 @@ export default function CadastrarProdutos() {
             <Form.Floating className="mt-3">
               <Form.Control
                 id="foto"
-                name="file"
+                name="foto"
                 type="file"
                 placeholder="insira foto"
                 value={foto}
-                onChange={setPhoto(e.target.files[0])}
+                onChange={(e) => onChange(e)}
               />
             </Form.Floating>
           </div>
