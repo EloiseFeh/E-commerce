@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function CadastrarProdutos() {
-  const formCadProduto = useRef();
-
   const [inputs, setInputs] = useState({
     descricao: "",
     preco: "",
-    foto: "",
+    foto: null,
     quantidade: "",
     autor: "",
     editora: "",
@@ -24,14 +22,23 @@ export default function CadastrarProdutos() {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const dadosForm = new FormData(formCadProduto.current);
+      const dadosForm = new FormData();
+      dadosForm.append("descricao", descricao);
+      dadosForm.append("preco", preco);
+      dadosForm.append("quantidade", quantidade);
+      dadosForm.append("autor", autor);
+      dadosForm.append("editora", editora);
+      dadosForm.append("ano", ano);
+      dadosForm.append("productImage", foto.files[0]);
+
+      console.log(dadosForm);
 
       // const body = { descricao, preco, foto, quantidade, autor, editora, ano };
       console.log(dadosForm);
       const response = await fetch("http://localhost:5000/admProdutos/novo", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosForm),
+        headers: { "Content-Type": "multipart/form-data" },
+        body: dadosForm,
       });
       console.log(response);
       // window.location = "/gerenciarProdutos";
@@ -49,7 +56,6 @@ export default function CadastrarProdutos() {
         name="formCadProduto"
         encType="multipart/form-data"
         onSubmit={onSubmitForm}
-        ref={formCadProduto}
       >
         <div className="row g2">
           <div className="col-xl">
@@ -107,6 +113,33 @@ export default function CadastrarProdutos() {
             </Form.Floating>
           </div>
         </div>
+        <div className="col-xl-6">
+          <Form.Floating className=" mt-3">
+            <Form.Control
+              id="autor"
+              name="autor"
+              type="text"
+              placeholder="Autor"
+              value={autor}
+              onChange={(e) => onChange(e)}
+            />
+            <label htmlFor="autor">Autor</label>
+          </Form.Floating>
+        </div>
+
+        <div className="col-xl-4">
+          <Form.Floating className="mb-3 mt-3">
+            <Form.Control
+              id="editora"
+              name="editora"
+              type="text"
+              placeholder="Editora"
+              value={editora}
+              onChange={(e) => onChange(e)}
+            />
+            <label htmlFor="editora">Editora</label>
+          </Form.Floating>
+        </div>
 
         <div className="row g2">
           <div className="col-xl-2">
@@ -120,32 +153,6 @@ export default function CadastrarProdutos() {
                 onChange={(e) => onChange(e)}
               />
               <label htmlFor="ano">Ano</label>
-            </Form.Floating>
-          </div>
-          <div className="col-xl-6">
-            <Form.Floating className=" mt-3">
-              <Form.Control
-                id="autor"
-                name="autor"
-                type="text"
-                placeholder="Autor"
-                value={autor}
-                onChange={(e) => onChange(e)}
-              />
-              <label htmlFor="autor">Autor</label>
-            </Form.Floating>
-          </div>
-          <div className="col-xl-4">
-            <Form.Floating className="mb-3 mt-3">
-              <Form.Control
-                id="editora"
-                name="editora"
-                type="text"
-                placeholder="Editora"
-                value={editora}
-                onChange={(e) => onChange(e)}
-              />
-              <label htmlFor="editora">Editora</label>
             </Form.Floating>
           </div>
         </div>
