@@ -41,7 +41,12 @@ export default function CadastrarProdutos() {
     <div>
       <h2>Cadastrar novo produto</h2>
 
-      <form onSubmit={onSubmitForm} enctype="multipart/form-data">
+      <form
+        onSubmit={onSubmitForm}
+        method="POST"
+        action="admProdutos/novo"
+        encType="multipart/form-data"
+      >
         <div className="row g2">
           <div className="col-xl">
             <Form.Floating className="mt-3">
@@ -76,11 +81,11 @@ export default function CadastrarProdutos() {
             <Form.Floating className="mt-3">
               <Form.Control
                 id="foto"
-                name="foto"
+                name="file"
                 type="file"
                 placeholder="insira foto"
                 value={foto}
-                onChange={(e) => onChange(e)}
+                onChange={setPhoto(e.target.files[0])}
               />
             </Form.Floating>
           </div>
