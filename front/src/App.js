@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,7 +9,7 @@ import Topbar from "./components/topbar";
 import "./style/App.css";
 import Home from "./views/home";
 import Cart from "./views/cart";
-import ClientDashboard from "./views/clientDashboard";
+import AreaCliente from "./views/areaCliente";
 import ProdutoUnico from "./views/produtoUnico";
 import Perfil from "./views/perfil";
 import Pedidos from "./views/pedidos";
@@ -20,6 +20,9 @@ import GerenciarClientes from "./views/gerenciarClientes";
 import DadosCliente from "./views/dadosCliente";
 import GerenciarCategorias from "./views/gerenciarCategorias";
 import GerenciarProdutos from "./views/gerenciarProdutos";
+import EditarProduto from "./views/editarProduto";
+import InserirProduto from "./views/inserirProduto";
+import PerfilAdm from "./views/perfilAdm";
 import Login from "./views/login";
 import Cadastro from "./views/cadastro";
 import { toast } from "react-toastify";
@@ -34,26 +37,21 @@ function App() {
     setIsAuthenticated(boolean);
   };
 
-  async function isAuth(){
-    try{
+  async function isAuth() {
+    try {
       const response = await fetch("http://localhost:5000/auth/is-verify", {
         method: "GET",
-        headers: {token: localStorage.token}
+        headers: { token: localStorage.token },
       });
 
-      const parseRes = await response.json()
+      const parseRes = await response.json();
       //console.log("PARSE RES AQ",parseRes)
-      parseRes ===true ? setIsAuthenticated(true):
-      setIsAuthenticated(false);
-
-    }
-    catch(err){
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (err) {
       console.error(err.message);
     }
   }
-  useEffect(()=>
-  isAuth()
-  )
+  useEffect(() => isAuth());
 
   return (
     <Router>
@@ -61,7 +59,7 @@ function App() {
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/produto" element={<ProdutoUnico />} />
-        <Route
+        {/* <Route
           path="/perfil"
           element={
             isAuthenticated ? (
@@ -70,7 +68,8 @@ function App() {
               <Navigate to="/login" />
             )
           }
-        />
+        /> */}
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/redirect" element={<RedirectPage />} />
         {/* Area adm */}
@@ -96,6 +95,9 @@ function App() {
         <Route path="/dadosCliente" element={<DadosCliente />} />
         <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />
         <Route path="/gerenciarProdutos" element={<GerenciarProdutos />} />
+        <Route path="/editarProduto" element={<EditarProduto />} />
+        <Route path="/inserirProduto" element={<InserirProduto />} />
+        <Route path="/perfilAdm" element={<PerfilAdm />} />
         <Route
           path="/login"
           element={
@@ -120,7 +122,7 @@ function App() {
           path="/usuario"
           element={
             isAuthenticated ? (
-              <ClientDashboard setAuth={setAuth} />
+              <AreaCliente setAuth={setAuth} />
             ) : (
               <Navigate to="/login" />
             )

@@ -6,19 +6,17 @@ import "../style/clientScreens.css";
 import "../style/login-cadastro.css";
 import { toast } from "react-toastify";
 
-export default function ClientDashboard({ setAuth }) {
+export default function AreaCliente({ setAuth }) {
   const [adm, setAdm] = useState("");
-
+  const [name, setName] = useState("");
   async function isAdm() {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
+      const response = await fetch("http://localhost:5000/dashboard/:id", {
         method: "GET",
         headers: { token: localStorage.token },
       });
       const parseRes = await response.json();
       setAdm(parseRes.administrador);
-      console.log("passou ");
-      console.log(parseRes);
     } catch (err) {
       console.error(err.message);
     }
@@ -28,48 +26,48 @@ export default function ClientDashboard({ setAuth }) {
     isAdm();
   });
 
+  useEffect(() => {
+    getName();
+  });
+
   if (adm) {
     return <Navigate to="/areaAdmin" />;
   }
 
-  // if (!setAuth) {
-  //   return <Navigate to="/login" />;
-  // }
-  // const [name, setName] = useState("");
-  // async function getName() {
-  //   try {
-  //     const response = await fetch("http://localhost:5000/dashboard/", {
-  //       method: "GET",
-  //       headers: { token: localStorage.token },
-  //     });
-  //     const parseRes = await response.json();
-  //     setName(parseRes.nome);
-  //     console.log(parseRes);
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // }
+  if (!setAuth) {
+    return <Navigate to="/login" />;
+  }
+
+  async function getName() {
+    try {
+      const response = await fetch("http://localhost:5000/dashboard/:id", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+      setName(parseRes.nome);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
     toast.success("Deslogado com sucesso!");
   };
-  // useEffect(() => {
-  //   getName();
-  // });
 
   return (
     <div className="clientDashboard container">
       <div className="row">
         <div className="col-xl-4">
-          <h1>Sua conta</h1>
+          <h1>Olá,{name}</h1>
           <button className="btn-submit" onClick={(e) => logout(e)}>
             Logout
           </button>
         </div>
       </div>
-      {/* <h1>Olá,{name}</h1> */}
+
       <div className="contentDiv">
         <CardClientOptions
           link="/pedidos"
