@@ -240,4 +240,90 @@ router.delete("/excluir/:id", async(req,res) => {
     }
 });
 
+
+////////////////////////////////////////// RELAÇÃO PRODUTO-CATEGORIA ///////////////////////////////////////////
+
+//retornar as categorias existentes
+router.get("/categorias", async (req, res) => {
+    try {
+      const categoria = await pool.query(
+        "SELECT * FROM categoria as c",
+        []
+      );
+      res.json(categoria.rows);
+  
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error!");
+    }
+});
+
+
+//retornar as categorias que pertencem a um só livro
+router.get("/categoria/:id", async (req, res) => {
+    try {
+      //recuperando categoria com o id
+      const {id} = req.params;
+      const produtoCategoria = await pool.query(
+        "select c.id,c.descricao as categoria" +
+        " from livro as l, categoria as c, livro_categoria as lc where l.id = lc.id_livro and c.id = lc.id_categoria and l.id = $1",
+        [id]
+      );
+      res.json(produtoCategoria.rows);
+  
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error!");
+    }
+});
+
+
+//adicionar uma categoria a um livro especifico
+router.post("/categoria/add/:id", async(req,res) => {
+    try {
+        //desestruturar req body
+        const {id_livro, id_categoria} = req.body;
+        const {id} = req.params;
+
+        //verificar se já existe
+        const catExisteNesseProduto = await pool.query("select * from livro_categoria where id_livro = $1 and id_categoria = $2",
+        [id,id_categoria]);
+        if(catExisteNesseProduto.rows.length!==0){
+            return res.status(401).json("Esse livro já possui essa categoria!");
+        }
+
+        //entrar a nova categoria para o produto
+        const novaCategoriaProduto = await pool.query(
+            "insert into livro_categoria (id_livro,id_categoria) values ($1,$2) RETURNING *",
+            [id,id_categoria]
+        );
+        res.json("Categoria inserida ao livro");
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error!");
+    }
+});
+
+
+//excluir uma categoria associada a um livro especifico
+router.delete("/categoria/excluir/:id", async(req,res) => {
+    try{
+        //recuperar id atual 
+        const {id} = req.params;
+        const {id_livro, id_categoria} = req.body;
+
+        //fazer a operacao de delete usando o id
+        const deletarCategoriaProduto = await pool.query(
+            "delete from livro_categoria where id_livro = $1 and id_categoria = $2",
+            [id,id_categoria]
+        );
+        res.json("Categoria do livro excluida!");
+  
+    } catch(err){
+        console.error(err.message);
+        res.status(500).send("Server Error!");
+    }
+});
+
 module.exports = router;
