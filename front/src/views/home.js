@@ -6,25 +6,7 @@ import Livros from "../components/livros";
 import SliderLivros from "../components/sliderlivros";
 import { Container } from "react-bootstrap";
 
-export default function Home() {
-  const [livros, setLivros] = useState([]);
-
-  const getLivros = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/produtos/");
-      const jsonData = await response.json();
-
-      setLivros(jsonData);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getLivros();
-  }, []);
-
-  console.log(livros);
+export default function Home({livros, handdleAddLivro}) {
 
   return (
     <>
@@ -37,7 +19,7 @@ export default function Home() {
                 </div>
                 <SliderLivros sliderlivros={livros}/>
             </Container> */}
-      <Livros livros={livros} />
+      <Livros livros={livros} handdleAddLivro={handdleAddLivro} />
     </>
   );
 }
