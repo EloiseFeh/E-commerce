@@ -38,9 +38,9 @@ const RelatoriosGerenciais = () => {
         <Stack gap={5}>
           <Row>
             <Stack gap={4}>
-              <BtnSecaoAdm link="/" text="Relatório de Compras" />
+              <BtnSecaoAdm link="/relatorioCompras" text="Relatório de Compras" />
               <BtnSecaoAdm link="/relatorioEstoque" text="Relatório de Estoque" />
-              <BtnSecaoAdm link="/" text="Relatório Financeiro" />
+              <BtnSecaoAdm link="/relatorioFinanceiro" text="Relatório Financeiro" />
             </Stack>
           </Row>
         </Stack>

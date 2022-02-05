@@ -17,6 +17,8 @@ import AreaAdmin from "./views/areaAdmin";
 import GerenciarClientesProdutos from "./views/gerenciarClientesProdutos";
 import RelatoriosGerenciais from "./views/relatoriosGerenciais";
 import RelatorioEstoque from "./views/relatorioEstoque";
+import RelatorioFinanceiro from "./views/relatorioFinanceiro";
+import RelatorioCompras from "./views/relatorioCompras";
 import GerenciarClientes from "./views/gerenciarClientes";
 import DadosCliente from "./views/dadosCliente";
 import GerenciarCategorias from "./views/gerenciarCategorias";
@@ -95,6 +97,10 @@ function App() {
          <Route
           path="/relatorioEstoque"
           element={<RelatorioEstoque />}
+        />
+           <Route
+          path="/relatorioCompras"
+          element={<RelatorioCompras />}
         />
         <Route path="/gerenciarClientes" element={<GerenciarClientes />} />
         <Route path="/dadosCliente" element={<DadosCliente />} />
