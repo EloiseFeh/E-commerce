@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-
+import VendasAdm from "../components/VendasAdm";
 import Topbar from "../components/topbar";
 
 import { Container, Stack } from "react-bootstrap";
 import ListaClientes from "../components/listaClientes";
-
+import ListarClientes from "../components/listarClientes";
 const GerenciarClientes = () => {
   const [adm, setAdm] = useState("");
 
@@ -33,17 +33,22 @@ const GerenciarClientes = () => {
 
   return (
     <div>
-      <Topbar />
-      <Container>
-        <Stack>
-          <h1>Gerenciar Clientes</h1>
-        </Stack>
-        <Stack>
-          <h4>Clientes Cadastrados</h4>
-          <ListaClientes />
-        </Stack>
-      </Container>
+      <ListarClientes/>
+      <VendasAdm/>
     </div>
+    
+    // <div>
+    //   <Topbar />
+    //   <Container>
+    //     <Stack>
+    //       <h1>Gerenciar Clientes</h1>
+    //     </Stack>
+    //     <Stack>
+    //       <h4>Clientes Cadastrados</h4>
+    //       <ListaClientes />
+    //     </Stack>
+    //   </Container>
+    // </div>
   );
 };
 
