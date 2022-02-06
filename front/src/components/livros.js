@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Livro from "./livro";
 
-const Livros = ({ livros }) => {
+const Livros = ({ livros, handdleAddLivro }) => {
   return (
     <Container className="mt-5">
       <div>
@@ -11,7 +11,7 @@ const Livros = ({ livros }) => {
       <Row>
         {livros.map((livro) => (
           <Col key={livro.id} lg={3} md={4} sm={6} xs={6} className="mb-3">
-            <Livro livro={livro} />
+            <Livro livro={livro} handdleAddLivro={handdleAddLivro} />
           </Col>
         ))}
       </Row>
