@@ -94,14 +94,9 @@ function App() {
           path="/relatoriosGerenciais"
           element={<RelatoriosGerenciais />}
         />
-         <Route
-          path="/relatorioEstoque"
-          element={<RelatorioEstoque />}
-        />
-           <Route
-          path="/relatorioCompras"
-          element={<RelatorioCompras />}
-        />
+        <Route path="/relatorioEstoque" element={<RelatorioEstoque />} />
+        <Route path="/relatorioCompras" element={<RelatorioCompras />} />
+        <Route path="/relatorioFinanceiro" element={<RelatorioFinanceiro />} />
         <Route path="/gerenciarClientes" element={<GerenciarClientes />} />
         <Route path="/dadosCliente" element={<DadosCliente />} />
         <Route path="/gerenciarCategorias" element={<GerenciarCategorias />} />

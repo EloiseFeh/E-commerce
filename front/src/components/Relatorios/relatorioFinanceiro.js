@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 
-export default function InputRelatorioCompras() {
+export default function CompRelatorioFinanceiro() {
   const [vendas, setVendas] = useState([]);
   const [inputs, setInputs] = useState({
     data_inicio: "",
@@ -20,7 +20,7 @@ export default function InputRelatorioCompras() {
     try {
       const body = { data_inicio, data_fim };
       const response = await fetch(
-        "http://localhost:5000/admVendas/relatorioClientes",
+        "http://localhost:5000/admVendas/relatorioPorDia",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -39,6 +39,8 @@ export default function InputRelatorioCompras() {
   const PrintRelatorio = async (e) => {
     window.print();
   };
+
+  console.log(vendas);
 
   return (
     <div className="mt-5">
@@ -64,24 +66,22 @@ export default function InputRelatorioCompras() {
           />
         </Form.Floating>
         <button className="modal-submit-button btn-submit">
-          Gerar Relatório
+          Gerar Relatório Financeiro
         </button>
       </form>
 
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>ID cliente</th>
-            <th>Nome do Cliente</th>
-            <th>Quantidade de Compras</th>
+            <th>Data e Hora</th>
+            <th>Total das vendas</th>
           </tr>
         </thead>
         <tbody>
           {vendas.map((venda) => (
-            <tr key={venda.id_usuario}>
-              <td>{venda.id_usuario}</td>
-              <td>{venda.nome}</td>
-              <td>{venda.vezes}</td>
+            <tr key={venda.data_hora}>
+              <td>{venda.data_hora}</td>
+              <td>{venda.total}</td>
             </tr>
           ))}
         </tbody>
