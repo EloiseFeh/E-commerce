@@ -3,63 +3,64 @@ import { Button,Form, Table } from "react-bootstrap";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css' 
 export default function InputRelatorioCompras(){
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
     const [vendas, setVendas]= useState([]);
     const [inputs, setInputs] = useState({
-        data_inicio: new Date(),
-        data_fim: new Date()
+        data_inicio:"",
+        data_fim:""
       });
+     const {data_inicio,data_fim} = inputs;
       const onChange = (e) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
       }
-     
-    //   const onSubmitForm = async (e) => {
-    //     e.preventDefault();
-    //     console.log("inicio"+startDate)
-    //     console.log(endDate)
-    // }
+    console.log(inputs.data_inicio)
+    console.log(inputs.data_fim)
+
+    const onSubmitForm = async (e) => {
+        e.preventDefault();
+        try {
+            const body = {data_inicio, data_fim};
+            const response = await fetch("http://localhost:5000/admVendas/relatorioClientes", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            }
+            );
+            const jsonData = await response.json();
+            console.log(jsonData)
+            setVendas(jsonData)
+            console.log(response);
+
+          } catch (err) {
+            console.error(err.message)
+            
+        }
+    }
 
 return(
     <div>
-        <form>
+        <form onSubmit={onSubmitForm} >
             <Form.Floating className="mb-3 mt-3">
               <Form.Control
-                id="id_usuario"
-                name="id_usuario"
+                id="data_inicio"
+                name="data_inicio"
                 type="date"
                 placeholder="Id do cliente"
-               value={data_inicio}
+                value={setInputs.data_inicio}
+                onChange={(e) => onChange(e)}
+              />
+            </Form.Floating>
+            <Form.Floating className="mb-3 mt-3">
+              <Form.Control
+                id="data_fim"
+                name="data_fim"
+                type="date"
+                placeholder="Id do cliente"
+                value={setInputs.data_fim}
                 onChange={(e) => onChange(e)}
               />
             
             </Form.Floating>
-            {/* <Form.Floating className="mb-3 mt-3">
-            <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            dateFormat="dd/MM/yyyy"
-            />
-            </Form.Floating>
-            <Form.Floating className="mb-3 mt-3">
-            <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            dateFormat="dd/MM/yyyy"
-      />
-            </Form.Floating>
-            {/* <Form.Floating class
-            {/* <Form.Floating className="mb-3 mt-3">
-            <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-            </Form.Floating> */} 
-            <button className="modal-submit-button btn-submit">Cadastrar</button>
+            <button className="modal-submit-button btn-submit">Gerar Relatório</button>
         </form>
     </div>
 )
