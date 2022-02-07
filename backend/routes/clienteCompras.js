@@ -20,5 +20,42 @@ router.get("/",authorization, async (req, res) => {
     }
 });
 
+router.post("/comprar", authorization, async(req,res) => {
+  try {
+    //1 - inserir usuario e data da venda
+    const compraCarrinho = await pool.query(
+      "insert into venda (id_usuario,data_hora) values ($1,current_timestamp)",
+      [req.user.id]
+    );
+
+    //2- retornar o id da venda que foi inserida agora
+    const compraFeita = await pool.query(
+      "select id from venda where id_usuario = $1 order by id desc LIMIT 1",
+      [req.user.id]
+    );
+    console.log("id da venda: "+ compraFeita.rows[0].id);
+
+    //3- inserir todas as rows dos livros
+    const {cartItems} = req.body;
+    console.log("tamanho de livros no carrinho:" + cartItems.length);
+
+    for(i=0;i<cartItems.length;i++){
+      console.log(cartItems[i]);
+      const compraLivros = await pool.query(
+        "insert into venda_livro (id_venda,id_livro,quantidade) values ($1,$2,$3)",
+        [compraFeita.rows[0].id,cartItems[i].id,cartItems[i].quantity]
+      );
+    }
+    
+    //4-quantidade (fazer dps)
+    
+    res.json("Venda feita! Livros adicionados!");
+    
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send("Server Error!");
+  }
+
+});
 
 module.exports = router;
