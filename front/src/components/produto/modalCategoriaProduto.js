@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
-
+import { Button, Modal, Table } from "react-bootstrap";
 export default function ModalCategoriaProduto({ livro }) {
   const [categoriaslivro, setCategoriasLivro] = useState([]);
-
+  const [inputs, setInputs] = useState({
+    id_categoria: ""
+  });
+  const onChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  }
+  const {id_categoria} = inputs;
   const getCategoriasLivro = async () => {
     try {
       const response = await fetch(
@@ -21,22 +27,41 @@ export default function ModalCategoriaProduto({ livro }) {
     }
   };
 
-  useEffect(() => {
-    getCategoriasLivro();
-  }, []);
+  const ApagarCategoria= async (id) => {
+    // e.preventDefault();
+    try {
+      const body = {id_categoria};
+      const response = await fetch(
+        `http://localhost:5000/admProdutos/categoria/excluir/${id}`,
+        {
+          method: "DELETE",
+          body: JSON.stringify(body),
+        }
+      );
+      // função para apagar visualmente o livro
+      //setLivros(livros.filter((livro) => livro.id !== id));
+      console.log(response);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  // useEffect(() => {
+  //   getCategoriasLivro();
+  // }, []);
 
   console.log("aqui o bookcategorie");
-  console.log(categoriaslivro);
+  //console.log(categoriaslivro);
 
   return (
     <div>
       <button
         type="button"
-        class="btn btn-warning btn-admProduto"
+        class="btn btn-info "
         data-toggle="modal"
         data-target={`#id${livro.descricao}`}
+        onClick={getCategoriasLivro}
       >
-        Editar
+        Editar categoria
       </button>
 
       <div
@@ -59,17 +84,43 @@ export default function ModalCategoriaProduto({ livro }) {
             </div>
 
             <div class="modal-body">
-              <Form.Floating className="mb-3 mt-3">
+            <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome da categoria</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categoriaslivro.map((categoria, index) => (
+              <tr key={categoria.id}>
+                <td>{categoria.id}</td>
+                <td>{categoria.categoria}</td>
+                  <td>
+            </td> 
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <div>
+          <form onSubmit={ApagarCategoria}>
+          <Form.Floating className="mb-3 mt-3">
                 <Form.Control
-                  id="descricao"
-                  name="descricao"
-                  type="text"
-                  value={categoriaslivro}
-                  // onChange={(e) => setDescricao(e.target.value)}
+                  id="id_categoria"
+                  name="id_categoria"
+                  type="number"
+                  value={id_categoria}
+                  onChange={(e) => onChange(e)}
                   placeholder="descricao"
                 />
                 <label htmlFor="descricao">Nome da Categoria</label>
               </Form.Floating>
+              <button>excluir</button>
+          </form>
+        
+        </div>
+            
             </div>
 
             <div class="modal-footer">
