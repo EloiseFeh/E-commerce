@@ -4,7 +4,7 @@ import EditarProduto from "./editarProduto";
 import "../../style/AdmProduto.css"
 const ListarProdutos = () => {
   const [livros, setLivros] = useState([]);
-
+  const [categorias, setCategorias] = useState([]);
   // função apagar livro
   const ApagarLivro = async (id) => {
     try {
@@ -28,21 +28,65 @@ const ListarProdutos = () => {
         "http://localhost:5000/admProdutos/consulta"
       );
       const jsonData = await response.json();
-
       setLivros(jsonData);
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  const getTheCategories = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/admProdutos/categorias"
+      );
+      const jsonData = await response.json();
+     setCategorias(jsonData)
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+
   useEffect(() => {
     getLivros();
+    getTheCategories();
   }, []);
 
   console.log(livros);
-
+  console.log(categorias)
   return (
-    <Table striped bordered hover>
+    <div>
+      <h2>Listagem de todas as categorias</h2>
+       <div>
+       <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome(Descrição)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {categorias.map((categoria, index) => (
+          <tr key={categoria.id}>
+            <td>{categoria.id}</td>
+            <td>{categoria.descricao}</td>
+            {/* <td>
+              <EditarProduto livro={livro} /> 
+              <button
+              className="btn btn-danger btn-admProduto"
+                onClick={() => ApagarLivro(livro.id)}
+              >
+                Excluir
+              </button> 
+            </td> */}
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+       </div>
+      <div>
+      <h2>Listagem de todos os livros</h2>
+      <Table striped bordered hover>
       <thead>
         <tr>
           <th>ID</th>
@@ -67,11 +111,24 @@ const ListarProdutos = () => {
               >
                 Excluir
               </button>
+              <button
+              className="btn btn-info"
+                // onClick={() => ApagarLivro(livro.id)}
+              >
+                Editar Categoria
+              </button>
             </td>
+            
           </tr>
         ))}
       </tbody>
     </Table>
+      </div>
+    </div>
+
+
+
+    
   );
 };
 
