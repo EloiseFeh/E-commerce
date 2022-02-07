@@ -20,17 +20,17 @@ export default function CadastrarProdutos() {
   const { descricao, preco, foto, quantidade, autor, editora, ano } = inputs;
 
   const onSubmitForm = async (e) => {
-    console.log("entrou no submit");
+    // console.log("entrou no submit");
     e.preventDefault();
     try {
       const body = { descricao, preco, foto, quantidade, autor, editora, ano };
-      console.log(body);
+      // console.log(body);
       const response = await fetch("http://localhost:5000/admProdutos/novo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(response);
+      // console.log(response);
       window.location = "/gerenciarProdutos";
     } catch (err) {
       console.error(err.message);
