@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
 import EditarProduto from "./editarProduto";
+import ModalCategoriaProduto from "./modalCategoriaProduto";
 import "../../style/AdmProduto.css"
 const ListarProdutos = () => {
   const [livros, setLivros] = useState([]);
@@ -111,12 +112,8 @@ const ListarProdutos = () => {
               >
                 Excluir
               </button>
-              <button
-              className="btn btn-info"
-                // onClick={() => ApagarLivro(livro.id)}
-              >
-                Editar Categoria
-              </button>
+              
+               <ModalCategoriaProduto livro={livro}/>
             </td>
             
           </tr>
