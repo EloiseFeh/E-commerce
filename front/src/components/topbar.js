@@ -56,7 +56,7 @@ export default function Topbar({cartItems}) {
           </Nav>
           <Nav>
             <Link to="/carrinho" className="nav-link">
-              Carrinho  ({cartItems.length})
+              Carrinho
             </Link>
             <Link to="/login" className="nav-link">
               Login
