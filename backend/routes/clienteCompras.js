@@ -40,14 +40,19 @@ router.post("/comprar", authorization, async(req,res) => {
     console.log("tamanho de livros no carrinho:" + cartItems.length);
 
     for(i=0;i<cartItems.length;i++){
-      console.log(cartItems[i]);
+
       const compraLivros = await pool.query(
         "insert into venda_livro (id_venda,id_livro,quantidade) values ($1,$2,$3)",
         [compraFeita.rows[0].id,cartItems[i].id,cartItems[i].quantity]
       );
+
+      //4-quantidade (decrementar do estoque)
+      const decrementarEstoque = await pool.query(
+        "update livro set quantidade = quantidade - $1 where id = $2",
+        [cartItems[i].quantity,cartItems[i].id]
+      );
     }
     
-    //4-quantidade (fazer dps)
     
     res.json("Venda feita! Livros adicionados!");
     
