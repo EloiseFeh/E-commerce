@@ -3,7 +3,7 @@ import "../style/produtoCarrinho.css";
 export default function ProdutoCarrinho({ item, handdleAddLivro, handdleRemoveLivro }) {
   
   const totalPriceItem = item.quantity * item.preco;
-  console.log(item);
+  // console.log(item);
 
   return (
     <div className="row produtoCarrinho">

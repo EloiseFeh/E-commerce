@@ -82,7 +82,9 @@ function App() {
     }
   }
 
-  console.log(livros);
+  const handdleCartClear = () => {
+    setCartItems([]);
+  }
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
@@ -108,7 +110,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" exact={true} element={<Home livros={livros} handdleAddLivro={handdleAddLivro} />} />
-        <Route path="/carrinho" element={<Cart cartItems={cartItems} handdleAddLivro={handdleAddLivro} handdleRemoveLivro={handdleRemoveLivro} />} />
+        <Route path="/carrinho" element={<Cart cartItems={cartItems} setCartItems={setCartItems} handdleAddLivro={handdleAddLivro} handdleRemoveLivro={handdleRemoveLivro} handdleCartClear={handdleCartClear} />} />
         <Route path="/produto" element={<ProdutoUnico />} />
         {/* <Route
           path="/perfil"

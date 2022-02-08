@@ -32,6 +32,9 @@
     color: #ffffff;
     margin: 0;
 }
+.btnCartClear{
+    
+}
 @media(max-width:1200px){
 .resumoCarrinho{
     width: 97%;

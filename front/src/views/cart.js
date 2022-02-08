@@ -1,10 +1,30 @@
+import { toast } from "react-toastify";
 import HeaderCarrinho from "../components/headerCarrinho";
 import ProdutoCarrinho from "../components/produtoCarrinho";
 import ResumoCarrinho from "../components/resumoCarrinho";
 import "../style/cart.css";
-export default function Cart({ cartItems, handdleAddLivro, handdleRemoveLivro }) {
+export default function Cart({ cartItems, setCartItems, handdleAddLivro, handdleRemoveLivro, handdleCartClear }) {
 
   const totalPrice = cartItems.reduce((preco, item) => preco + item.quantity * item.preco, 0);
+
+  const finishPurchase = async () => {
+    //e.preventDefault();
+    try {
+      const body = {cartItems};
+      console.log(body);
+      const response = await fetch("http://localhost:5000/clienteCompras/comprar", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json', token: localStorage.token },
+        body: JSON.stringify(body),
+      });
+      const jsonData = await response.json();
+      cartItems(jsonData);
+    } catch (err) {
+      handdleCartClear();
+      toast.success("Compra feita com sucesso!");
+      console.error(err.message);
+    }
+  };
 
   return (
     <div>
@@ -31,11 +51,10 @@ export default function Cart({ cartItems, handdleAddLivro, handdleRemoveLivro })
             ))}
           </div>
           <div className="col-xl-4">
-            <ResumoCarrinho totalPrice={totalPrice} />
+            <ResumoCarrinho finishPurchase={finishPurchase} totalPrice={totalPrice} handdleCartClear={handdleCartClear} />
           </div>
         </div>
       </div>
-      <form></form>
     </div>
   );
 }

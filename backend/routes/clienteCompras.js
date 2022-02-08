@@ -51,7 +51,7 @@ router.post("/comprar", authorization, async(req,res) => {
     
     res.json("Venda feita! Livros adicionados!");
     
-  } catch (error) {
+  } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error!");
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import BtnFinalCompra from "./btnFinalCompra";
 import "../style/resumoCarrinho.css"
-export default function ResumoCarrinho({ totalPrice }){
+export default function ResumoCarrinho({ totalPrice, finishPurchase, handdleCartClear }){
     return(
         <div>
             <div className="resumoCarrinho justify-content-center">
@@ -13,15 +13,16 @@ export default function ResumoCarrinho({ totalPrice }){
                 </div>
                 <div className="taxa">
                     <p>Taxa</p>
-                    <p>R$ 20,00</p>
+                    <p>R$ {totalPrice === 0 ? "0,00" : "20,00"}</p>
                 </div>
              </div>
              <div className="total">
                  <p>Total</p>
-                 <p>$ 70,00</p>
+                 <p>$ {totalPrice === 0 ? "0,00" : totalPrice + 20}</p>
              </div>
-        </div>  
-        <BtnFinalCompra link ="/" texto ="Finalizar compra"/>
+        </div>
+        {totalPrice !==0 && (<button className="btnCartClear" onClick={() => {handdleCartClear()}}>Limpar Carrinho</button>)}
+        {totalPrice !== 0 && <BtnFinalCompra finishPurchase={finishPurchase} texto ="Finalizar compra"/>}
         </div>
         
     )
