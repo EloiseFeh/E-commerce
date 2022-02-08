@@ -4,12 +4,49 @@ import { Button, Modal, Table } from "react-bootstrap";
 export default function ModalCategoriaProduto({ livro }) {
   const [categoriaslivro, setCategoriasLivro] = useState([]);
   const [inputs, setInputs] = useState({
-    id_categoria: ""
+    id_categoria:"",
+    id_categoria:""
   });
   const onChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   }
-  const {id_categoria} = inputs;
+   const {id_categoria,id_categoria2} = inputs;
+
+   const onSubmitForm = async (id) => {
+    // console.log("entrou no submit");
+    // e.preventDefault();
+    try {
+      const body = { id_categoria};
+      // console.log(body);
+      const response = await fetch(`http://localhost:5000/admProdutos/categoria/add/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      // console.log(response);
+      // window.location = "/gerenciarProdutos";
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  const onSubmitForm2 = async (id) => {
+    // console.log("entrou no submit");
+    // e.preventDefault();
+    try {
+      const body = { id_categoria2};
+      // console.log(body);
+      const response = await fetch(`http://localhost:5000/admProdutos/categoria/excluir/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      // console.log(response);
+      // window.location = "/gerenciarProdutos";
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   const getCategoriasLivro = async () => {
     try {
       const response = await fetch(
@@ -27,33 +64,12 @@ export default function ModalCategoriaProduto({ livro }) {
     }
   };
 
-  const ApagarCategoria= async (id) => {
-    // e.preventDefault();
-    try {
-      const body = {id_categoria};
-      const response = await fetch(
-        `http://localhost:5000/admProdutos/categoria/excluir/${id}`,
-        {
-          method: "DELETE",
-          body: JSON.stringify(body),
-        }
-      );
-      // função para apagar visualmente o livro
-      //setLivros(livros.filter((livro) => livro.id !== id));
-      console.log(response);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-  // useEffect(() => {
-  //   getCategoriasLivro();
-  // }, []);
-
-  console.log("aqui o bookcategorie");
-  //console.log(categoriaslivro);
 
   return (
     <div>
+      <div>
+       
+      </div>
       <button
         type="button"
         class="btn btn-info "
@@ -102,25 +118,41 @@ export default function ModalCategoriaProduto({ livro }) {
               </tr>
             ))}
           </tbody>
-        </Table>
-        <div>
-          <form onSubmit={ApagarCategoria}>
-          <Form.Floating className="mb-3 mt-3">
-                <Form.Control
-                  id="id_categoria"
-                  name="id_categoria"
-                  type="number"
-                  value={id_categoria}
-                  onChange={(e) => onChange(e)}
-                  placeholder="descricao"
-                />
-                <label htmlFor="descricao">Nome da Categoria</label>
-              </Form.Floating>
-              <button>excluir</button>
-          </form>
+        </Table>  
+        <form onSubmit={()=>onSubmitForm(livro.id)}>
+          <h5>Adicionar Categoria</h5>
+        <Form.Floating className="mt-3">
+          <Form.Control
+            id="id_categoria"
+            name="id_categoria"
+            type="text"
+            placeholder="descricao"
+            value={id_categoria}
+            onChange={(e) => onChange(e)}
+          />
+          <label htmlFor="descricao">Descrição</label>
+        </Form.Floating>
+        <button className="btn btn-info">Adicionar</button>
+        </form>   
         
-        </div>
-            
+
+
+        <form onSubmit={()=>onSubmitForm2(livro.id)}>
+          <h5>excluir Categoria</h5>
+        <Form.Floating className="mt-3">
+          <Form.Control
+            id="id_categoria2"
+            name="id_categoria2"
+            type="text"
+            placeholder="descricao"
+            value={id_categoria2}
+            onChange={(e) => onChange(e)}
+          />
+          <label htmlFor="descricao">Descrição</label>
+        </Form.Floating>
+        <button  className="btn btn-danger" >Excluir</button>
+        </form>   
+        
             </div>
 
             <div class="modal-footer">
