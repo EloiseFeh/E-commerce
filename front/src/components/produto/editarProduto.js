@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
 const EditarProduto = ({ livro }) => {
-  console.log(livro);
+  // console.log(livro);
 
   const [descricao, setDescricao] = useState(livro.descricao);
   const [preco, setPreco] = useState(livro.preco);
@@ -103,7 +103,7 @@ const EditarProduto = ({ livro }) => {
 
   return (
     <div>
-     <button
+      <button
         type="button"
         class="btn btn-warning btn-admProduto"
         data-toggle="modal"
@@ -111,7 +111,6 @@ const EditarProduto = ({ livro }) => {
       >
         Editar
       </button>
-
 
       <div
         class="modal"

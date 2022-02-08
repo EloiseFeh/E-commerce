@@ -11,6 +11,9 @@ import Pedidos from "./views/pedidos";
 import AreaAdmin from "./views/areaAdmin";
 import GerenciarClientesProdutos from "./views/gerenciarClientesProdutos";
 import RelatoriosGerenciais from "./views/relatoriosGerenciais";
+import RelatorioEstoque from "./views/relatorioEstoque";
+import RelatorioFinanceiro from "./views/relatorioFinanceiro";
+import RelatorioCompras from "./views/relatorioCompras";
 import GerenciarClientes from "./views/gerenciarClientes";
 import DadosCliente from "./views/dadosCliente";
 import GerenciarCategorias from "./views/gerenciarCategorias";
@@ -126,6 +129,27 @@ function App() {
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/redirect" element={<RedirectPage />} />
         {/* Area adm */}
+        <Route
+          path="/areaAdmin"
+          element={
+            isAuthenticated ? (
+              <AreaAdmin setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/gerenciarClientesProdutos"
+          element={<GerenciarClientesProdutos />}
+        />
+        <Route
+          path="/relatoriosGerenciais"
+          element={<RelatoriosGerenciais />}
+        />
+        <Route path="/relatorioEstoque" element={<RelatorioEstoque />} />
+        <Route path="/relatorioCompras" element={<RelatorioCompras />} />
+        <Route path="/relatorioFinanceiro" element={<RelatorioFinanceiro />} />
         <Route path="/areaAdmin" element={isAuthenticated ? <AreaAdmin setAuth={setAuth} /> : <Navigate to="/login" />} />
         <Route path="/gerenciarClientesProdutos" element={<GerenciarClientesProdutos />} />
         <Route path="/relatoriosGerenciais" element={<RelatoriosGerenciais />} />

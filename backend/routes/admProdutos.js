@@ -311,12 +311,12 @@ router.delete("/categoria/excluir/:id", async(req,res) => {
     try{
         //recuperar id atual 
         const {id} = req.params;
-        const {id_livro, id_categoria} = req.body;
+        const {id_livro, id_categoria2} = req.body;
 
         //fazer a operacao de delete usando o id
         const deletarCategoriaProduto = await pool.query(
             "delete from livro_categoria where id_livro = $1 and id_categoria = $2",
-            [id,id_categoria]
+            [id,id_categoria2]
         );
         res.json("Categoria do livro excluida!");
   
