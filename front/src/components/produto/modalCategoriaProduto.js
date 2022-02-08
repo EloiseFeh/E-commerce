@@ -138,7 +138,7 @@ export default function ModalCategoriaProduto({ livro }) {
 
 
         <form onSubmit={()=>onSubmitForm2(livro.id)}>
-          <h5>excluir Categoria</h5>
+          <h5>Excluir Categoria</h5>
         <Form.Floating className="mt-3">
           <Form.Control
             id="id_categoria2"
@@ -156,14 +156,6 @@ export default function ModalCategoriaProduto({ livro }) {
             </div>
 
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-warning"
-                data-dismiss="modal"
-                // onClick={(e) => updateProduto(e)}
-              >
-                Editar
-              </button>
               <button
                 type="button"
                 class="btn btn-danger"
