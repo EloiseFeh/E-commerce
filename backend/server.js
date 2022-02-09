@@ -19,6 +19,10 @@ app.use("/produtos", require("./routes/produtosVisual"));
 //operacoes adm
 app.use("/admProdutos", require("./routes/admProdutos"));
 app.use("/admCategorias", require("./routes/admCategorias"));
+app.use("/admVendas", require("./routes/admVendas"));
+
+//operacoes cliente
+app.use("/clienteCompras", require("./routes/clienteCompras"));
 
 app.listen(process.env.PORT || 5000);
 console.log("server on!");

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import ModalLoginCadastro from "./modalLogCad";
 
-export default function Topbar() {
+export default function Topbar({cartItems}) {
   const [modalShow, setModalShow] = React.useState(false);
   const [categorias, setCategorias] = useState([]);
 

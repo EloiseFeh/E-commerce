@@ -1,5 +1,6 @@
 import "../style/clientScreens.css";
 import PedidoLine from "../components/pedidoLine";
+import PedidoCliente from "../components/PedidosCliente";
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -31,7 +32,7 @@ export default function Pedidos() {
     <div className="clientDashboard">
       <h1>Seus Pedidos</h1>
 
-      <div className="contentDivEdit">
+      {/* <div className="contentDivEdit">
         <div className="pedidoInfoTitles">
           <label>ID</label>
           <label>Produtos</label>
@@ -69,7 +70,8 @@ export default function Pedidos() {
           valor="R$ 100,00"
           status="Entregue"
         />
-      </div>
+      </div> */}
+      <PedidoCliente/>
     </div>
   );
 }
